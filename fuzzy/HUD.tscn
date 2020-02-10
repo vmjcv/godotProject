@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://images/styleboxflat/purple.tres" type="StyleBox" id=1]
 [ext_resource path="res://images/icon/时空点.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://images/icon/特殊字符.png" type="Texture" id=8]
 [ext_resource path="res://images/icon/统计报表.png" type="Texture" id=9]
 [ext_resource path="res://images/styleboxflat/orange.tres" type="StyleBox" id=10]
+[ext_resource path="res://PopupPanel.gd" type="Script" id=11]
+[ext_resource path="res://CheckSize.gd" type="Script" id=12]
+[ext_resource path="res://images/icon/历史记录.png" type="Texture" id=13]
+[ext_resource path="res://images/icon/设置.png" type="Texture" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 3.0
@@ -37,6 +41,12 @@ corner_radius_bottom_left = 5
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 5.04965
+margin_top = -1.43394
+margin_right = 5.04956
+margin_bottom = -1.43396
+size_flags_horizontal = 7
+size_flags_vertical = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,6 +67,7 @@ margin_bottom = 33.0
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -163,12 +174,16 @@ __meta__ = {
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
 visible = true
-margin_left = 336.0
-margin_right = 688.0
-margin_bottom = 64.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -117.0
+margin_right = 116.0
+margin_bottom = 72.0
 custom_styles/panel = SubResource( 2 )
 popup_exclusive = true
+script = ExtResource( 11 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -185,15 +200,15 @@ __meta__ = {
 }
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PopupPanel/VBoxContainer"]
-margin_right = 352.0
+margin_right = 321.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 352, 40 )
+rect_min_size = Vector2( 100, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PopupPanel/VBoxContainer/VSplitContainer"]
-margin_right = 352.0
+margin_right = 321.0
 margin_bottom = 40.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -208,30 +223,149 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="PopupPanel/VBoxContainer"]
 margin_top = 41.0
-margin_right = 352.0
+margin_right = 321.0
 margin_bottom = 45.0
-rect_min_size = Vector2( 352, 4 )
+rect_min_size = Vector2( 100, 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer"]
 margin_top = 46.0
-margin_right = 352.0
+margin_right = 321.0
 margin_bottom = 86.0
-rect_min_size = Vector2( 352, 5 )
-custom_constants/separation = 0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 100, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CheckButton" type="CheckButton" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 122.0
-margin_right = 230.0
+[node name="HistoryPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
+margin_right = 25.0
 margin_bottom = 40.0
-size_flags_horizontal = 6
-size_flags_vertical = 6
+rect_min_size = Vector2( 25, 25 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="History" type="Button" parent="PopupPanel/VBoxContainer/HBoxContainer/HistoryPanel"]
+anchor_left = -0.125
+anchor_top = 0.1875
+anchor_right = 1.125
+anchor_bottom = 0.8125
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+icon = ExtResource( 13 )
+clip_text = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="FastPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
+margin_left = 45.0
+margin_right = 148.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 103, 40 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fast" type="CheckButton" parent="PopupPanel/VBoxContainer/HBoxContainer/FastPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.6
+margin_top = -20.0
+margin_right = 51.4
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 8 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "fast"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AutoPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
+margin_left = 168.0
+margin_right = 276.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 108, 40 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Auto" type="CheckButton" parent="PopupPanel/VBoxContainer/HBoxContainer/AutoPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.0
+margin_top = -20.0
+margin_right = 54.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 8 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "auto"
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
+}
+
+[node name="SettingPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
+margin_left = 296.0
+margin_right = 321.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 25, 25 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Setting" type="Button" parent="PopupPanel/VBoxContainer/HBoxContainer/SettingPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.5
+margin_top = -12.5
+margin_right = 12.5
+margin_bottom = 12.5
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+icon = ExtResource( 14 )
+clip_text = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
 }

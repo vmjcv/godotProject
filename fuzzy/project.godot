@@ -8,15 +8,36 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Technology",
+"language": "GDScript",
+"path": "res://script/Technology/Technology.gd"
+}, {
+"base": "Reference",
+"class": "TechnologyArray",
+"language": "GDScript",
+"path": "res://script/Technology/TechnologyArray.gd"
+}, {
+"base": "Node",
+"class": "TechnologyManage",
+"language": "GDScript",
+"path": "res://script/Technology/TechnologyManage.gd"
+} ]
 _global_script_class_icons={
-
+"Technology": "",
+"TechnologyArray": "",
+"TechnologyManage": ""
 }
 
 [application]
 
 config/name="fuzzy"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://script/Global.gd"
 
 [rendering]
 
