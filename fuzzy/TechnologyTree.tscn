@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TechnologyTree.gd" type="Script" id=3]
+
+[node name="TechnologyTree" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BaseContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThreeTree" type="HBoxContainer" parent="BaseContainer"]
+margin_right = 1920.0
+margin_bottom = 867.0
+size_flags_vertical = 3
+
+[node name="Descent" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
+margin_right = 637.0
+margin_bottom = 867.0
+size_flags_horizontal = 7
+alignment = 1
+
+[node name="Science" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
+margin_left = 641.0
+margin_right = 1278.0
+margin_bottom = 867.0
+size_flags_horizontal = 7
+alignment = 1
+
+[node name="Magic" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
+margin_left = 1282.0
+margin_right = 1920.0
+margin_bottom = 867.0
+size_flags_horizontal = 7
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="BaseContainer"]
+margin_top = 871.0
+margin_right = 1920.0
+margin_bottom = 876.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="BaseContainer"]
+margin_top = 880.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseContainer/CenterContainer"]
+margin_left = 960.0
+margin_top = 98.0
+margin_right = 960.0
+margin_bottom = 102.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="BaseContainer/CenterContainer/VBoxContainer"]
+
+[node name="FirstLine" type="HBoxContainer" parent="BaseContainer/CenterContainer/VBoxContainer/CenterContainer2"]
+custom_constants/separation = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="BaseContainer/CenterContainer/VBoxContainer"]
+margin_top = 4.0
+margin_bottom = 4.0
+
+[node name="SecondLine" type="HBoxContainer" parent="BaseContainer/CenterContainer/VBoxContainer/CenterContainer"]
+custom_constants/separation = 50

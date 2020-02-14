@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="Rank1" type="CenterContainer"]
+margin_left = 318.0
+margin_top = 445.0
+margin_right = 318.0
+margin_bottom = 445.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconPanel" type="HBoxContainer" parent="."]
+alignment = 2

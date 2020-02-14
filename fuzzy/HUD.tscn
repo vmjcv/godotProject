@@ -41,13 +41,10 @@ corner_radius_bottom_left = 5
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.04965
-margin_top = -1.43394
-margin_right = 5.04956
-margin_bottom = -1.43396
 size_flags_horizontal = 7
 size_flags_vertical = 7
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -176,9 +173,9 @@ __meta__ = {
 visible = true
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -117.0
-margin_right = 116.0
-margin_bottom = 72.0
+margin_left = -267.0
+margin_right = 267.0
+margin_bottom = 92.0
 custom_styles/panel = SubResource( 2 )
 popup_exclusive = true
 script = ExtResource( 11 )
@@ -200,7 +197,7 @@ __meta__ = {
 }
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PopupPanel/VBoxContainer"]
-margin_right = 321.0
+margin_right = 659.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 __meta__ = {
@@ -208,7 +205,7 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PopupPanel/VBoxContainer/VSplitContainer"]
-margin_right = 321.0
+margin_right = 659.0
 margin_bottom = 40.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -223,7 +220,7 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="PopupPanel/VBoxContainer"]
 margin_top = 41.0
-margin_right = 321.0
+margin_right = 659.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 100, 4 )
 __meta__ = {
@@ -232,7 +229,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer"]
 margin_top = 46.0
-margin_right = 321.0
+margin_right = 659.0
 margin_bottom = 86.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -246,9 +243,9 @@ __meta__ = {
 }
 
 [node name="HistoryPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_right = 25.0
+margin_right = 363.798
 margin_bottom = 40.0
-rect_min_size = Vector2( 25, 25 )
+rect_min_size = Vector2( 363.798, 25 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -275,8 +272,8 @@ __meta__ = {
 }
 
 [node name="FastPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 45.0
-margin_right = 148.0
+margin_left = 383.0
+margin_right = 486.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 103, 40 )
 script = ExtResource( 12 )
@@ -306,8 +303,8 @@ __meta__ = {
 }
 
 [node name="AutoPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 168.0
-margin_right = 276.0
+margin_left = 506.0
+margin_right = 614.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 108, 40 )
 script = ExtResource( 12 )
@@ -337,8 +334,8 @@ __meta__ = {
 }
 
 [node name="SettingPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 296.0
-margin_right = 321.0
+margin_left = 634.0
+margin_right = 659.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 25, 25 )
 script = ExtResource( 12 )

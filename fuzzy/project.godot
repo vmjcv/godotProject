@@ -9,25 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Button",
 "class": "Technology",
 "language": "GDScript",
 "path": "res://script/Technology/Technology.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "TechnologyArray",
 "language": "GDScript",
 "path": "res://script/Technology/TechnologyArray.gd"
-}, {
-"base": "Node",
-"class": "TechnologyManage",
-"language": "GDScript",
-"path": "res://script/Technology/TechnologyManage.gd"
 } ]
 _global_script_class_icons={
 "Technology": "",
-"TechnologyArray": "",
-"TechnologyManage": ""
+"TechnologyArray": ""
 }
 
 [application]
@@ -37,7 +31,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
+configs="*res://data/gdscript/configs.gd"
 Global="*res://script/Global.gd"
+PlayerArchive="*res://script/PlayerArchive.gd"
+TechnologyManage="*res://script/Technology/TechnologyManage.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [rendering]
 
