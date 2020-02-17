@@ -1,3 +1,4 @@
+# 贝塞尔曲线类
 extends Node2D
 var list=[] #数组，用来保存20节小箭头
 func _ready():
@@ -8,16 +9,16 @@ func _ready():
 		list.append(sprite)        #添加到数组里
 		sprite.texture=load("res://images/other/arrow_start.png")  #把图片换成箭头1
 		sprite.scale=Vector2(1,1)*(0.2+float(i)/18*0.8) #改变缩放，根据杀戮尖塔，箭头是一节节越来越大的
-		sprite.offset=Vector2(0,-36)  #由于我画的图片中心点在箭头中间，
+		sprite.offset=Vector2(-36,0)  #由于我画的图片中心点在箭头中间，
 									  #这里改变一下图片偏移，把图片中心点移动到箭头头部
 	#最后生成终点的箭头，用箭头2的图片
 	var sprite=Sprite.new()   
 	add_child(sprite)
 	list.append(sprite)
 	sprite.texture=load("res://images/other/arrow_end.png")
-	sprite.offset=Vector2(0,-17)
+	sprite.offset=Vector2(-17,0)
 	
-	reset(Vector2(640,640),Vector2(300,100))
+	visible=false
 	
 func reset(startPos,endPos):
 	#根据传入的起点和终点来计算两个控制点
@@ -38,12 +39,14 @@ func reset(startPos,endPos):
 func updateAngle():
 	for i in range(20):
 		if i==0:
-			list[0].rotation_degrees=0    #第一个小箭头就让他固定朝上好了
+			list[0].rotation_degrees=270    #第一个小箭头就让他固定朝上好了
 		else:
 			var current=list[i]    #当前的小箭头
 			var last=list[i-1]     #前一个小箭头
 			var lenVec=current.position-last.position      #两个箭头连线的向量
 			var a=lenVec.angle()            #计算这个向量的角度，这个angle()返回值是弧度
-			a=a+90
 			a=rad2deg(a)               #弧度转成角度
 			current.rotation_degrees=a   #更新小箭头的方向
+
+
+		

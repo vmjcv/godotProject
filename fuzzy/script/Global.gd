@@ -1,3 +1,4 @@
+# 全局数据类
 extends Node
 
 enum TechnologyType {

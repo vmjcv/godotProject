@@ -1,3 +1,4 @@
+# 玩家存档类
 extends Node
 var technology:Dictionary # 科技信息
 var technology_manage# 科技管理器
@@ -25,7 +26,8 @@ func save_technology(number):
 func save_technology_manage(number):
 	var save_game = File.new()
 	save_game.open("user://savegame/technology_manage%s.save"%number, File.WRITE)
-	var node = TechnologyManage
+	var node = get_tree().get_node("TechnologyManage")
+
 	if node.filename.empty():
 		save_game.close()
 		return 

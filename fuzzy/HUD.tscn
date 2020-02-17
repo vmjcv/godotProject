@@ -197,7 +197,7 @@ __meta__ = {
 }
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PopupPanel/VBoxContainer"]
-margin_right = 659.0
+margin_right = 750.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 __meta__ = {
@@ -205,7 +205,7 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PopupPanel/VBoxContainer/VSplitContainer"]
-margin_right = 659.0
+margin_right = 750.0
 margin_bottom = 40.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -220,7 +220,7 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="PopupPanel/VBoxContainer"]
 margin_top = 41.0
-margin_right = 659.0
+margin_right = 750.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 100, 4 )
 __meta__ = {
@@ -229,7 +229,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer"]
 margin_top = 46.0
-margin_right = 659.0
+margin_right = 750.0
 margin_bottom = 86.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -243,9 +243,9 @@ __meta__ = {
 }
 
 [node name="HistoryPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_right = 363.798
+margin_right = 454.748
 margin_bottom = 40.0
-rect_min_size = Vector2( 363.798, 25 )
+rect_min_size = Vector2( 454.748, 25 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -272,8 +272,8 @@ __meta__ = {
 }
 
 [node name="FastPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 383.0
-margin_right = 486.0
+margin_left = 474.0
+margin_right = 577.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 103, 40 )
 script = ExtResource( 12 )
@@ -303,8 +303,8 @@ __meta__ = {
 }
 
 [node name="AutoPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 506.0
-margin_right = 614.0
+margin_left = 597.0
+margin_right = 705.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 108, 40 )
 script = ExtResource( 12 )
@@ -334,8 +334,8 @@ __meta__ = {
 }
 
 [node name="SettingPanel" type="Control" parent="PopupPanel/VBoxContainer/HBoxContainer"]
-margin_left = 634.0
-margin_right = 659.0
+margin_left = 725.0
+margin_right = 750.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 25, 25 )
 script = ExtResource( 12 )
