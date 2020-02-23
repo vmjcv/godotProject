@@ -125,8 +125,8 @@ func _init_tree_slot():
 			root_node.add_child(node)
 			for i in range(1,rank_tree[rank]+1):
 				var slot_node = slot.instance()
-				slot_node.rect_min_size =Vector2(60,60)
-				slot_node.rect_size =Vector2(60,60)
+				slot_node.rect_min_size = Vector2(60,60)
+				slot_node.rect_size = Vector2(60,60)
 				node.get_node("IconPanel").add_child(slot_node)
 				slot_node.name="Slot%s"%i
 				slot_node.add_to_group("TechnologySlot")

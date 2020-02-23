@@ -96,11 +96,11 @@ func has(obj):
 
 func get_by_category(category) -> Dictionary:
 	# 某一类型的全部科技列表
-	return _warehouse[warehouse_key.CATEGORY][category]
+	return _warehouse[warehouse_key.CATEGORY][category][warehouse_key.NUMBER]
 
 func get_by_category_rank(category,rank) -> Dictionary:
 	# 某一类型某一阶位的全部科技
-	return get_by_category(category)[warehouse_key.RANK].get(rank,{})
+	return _warehouse[warehouse_key.CATEGORY][category][warehouse_key.RANK].get(rank,{})
 
 func get_random_technology(amount, category = -1, random_warehouse = null) -> TechnologyTable:
 	# 根据权重值随机获得部分科技
@@ -114,7 +114,7 @@ func get_random_technology(amount, category = -1, random_warehouse = null) -> Te
 	if category == -1:
 		random_pool = all()
 	else:
-		random_pool = get_by_category(category)[warehouse_key.NUMBER]
+		random_pool = get_by_category(category)
 
 	for _i in range(amount):
 		var total_weights = 0

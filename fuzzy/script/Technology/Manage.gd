@@ -201,7 +201,12 @@ func recalculate_round_start_number():
 	
 func add_progress(value):
 	# 科技增加进度
-	value = remaining_progress + value
+	if remaining_progress > value:
+		remaining_progress -= value
+		value *= 2
+	else:
+		value = value + remaining_progress
+		remaining_progress = 0
 
 	var need_again = true
 	var finish_flag = false
@@ -226,6 +231,7 @@ func add_progress(value):
 			var technology = propel.get(number)
 			finish.append(technology)
 			propel.erase(technology)
+	remaining_progress = remaining_progress + value
 	if finish_flag:
 		_update_selected_pool()
 	return true

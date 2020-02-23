@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Button",
+"class": "PolicyData",
+"language": "GDScript",
+"path": "res://script/Policy/Data.gd"
+}, {
+"base": "Node",
+"class": "PolicyTable",
+"language": "GDScript",
+"path": "res://script/Policy/Table.gd"
+}, {
+"base": "Button",
 "class": "TechnologyData",
 "language": "GDScript",
 "path": "res://script/Technology/Data.gd"
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://script/Technology/Table.gd"
 } ]
 _global_script_class_icons={
+"PolicyData": "",
+"PolicyTable": "",
 "TechnologyData": "",
 "TechnologyTable": ""
 }
@@ -35,6 +47,8 @@ configs="*res://data/gdscript/configs.gd"
 PlayerArchive="*res://script/PlayerArchive.gd"
 TechnologyConstant="*res://script/Technology/Constant.gd"
 TechnologyManage="*res://script/Technology/Manage.gd"
+PolicyConstant="*res://script/Policy/Constant.gd"
+PolicyManage="*res://script/Policy/Manage.gd"
 
 [display]
 
@@ -43,4 +57,5 @@ window/size/height=1080
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"
