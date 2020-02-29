@@ -1,0 +1,60 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Button",
+"class": @"PolicyData",
+"language": @"GDScript",
+"path": "res://script/Policy/Data.gd"
+}, {
+"base": "Node",
+"class": @"PolicyTable",
+"language": @"GDScript",
+"path": "res://script/Policy/Table.gd"
+}, {
+"base": "Button",
+"class": @"TechnologyData",
+"language": @"GDScript",
+"path": "res://script/Technology/Data.gd"
+}, {
+"base": "Node",
+"class": @"TechnologyTable",
+"language": @"GDScript",
+"path": "res://script/Technology/Table.gd"
+} ]
+_global_script_class_icons={
+@"TechnologyTable": "",
+@"TechnologyData": "",
+@"PolicyTable": "",
+@"PolicyData": ""
+}
+
+[application]
+
+config/name="fuzzy"
+config/icon="res://icon.png"
+
+[autoload]
+
+Configs="*res://data/gdscript/configs.gd"
+PlayerArchive="*res://script/PlayerArchive.gd"
+TechnologyConstant="*res://script/Technology/Constant.gd"
+TechnologyManage="*res://script/Technology/Manage.gd"
+PolicyConstant="*res://script/Policy/Constant.gd"
+PolicyManage="*res://script/Policy/Manage.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
