@@ -49,9 +49,6 @@ func _init_signal():
 func get_slot(category,rank,rank_id):
 	return technology_tree_map[category].get_node("Rank%s/IconPanel/Slot%s"%[rank, rank_id])
 	
-func get_technology(category,rank,rank_id):
-	return technology_tree_map[category].get_node("Rank%s/IconPanel/Slot%s/Icon"%[rank, rank_id])
-
 func _start_round():
 	_update_all_slot()
 	
@@ -94,9 +91,7 @@ func _add_selected_pool(technology):
 
 func _add_to_tree(technology):
 	var slot = get_slot(technology.tree_category,technology.tree_rank,technology.tree_rank_id)
-	slot.add_child(technology)
-	technology.name="Icon"
-	technology.rect_position=Vector2(0,0)
+	slot.add_technology(technology)
 
 func _resize_to_big(technology):
 	technology.rect_min_size = Vector2(80,80)
@@ -125,14 +120,7 @@ func _init_tree_slot():
 			root_node.add_child(node)
 			for i in range(1,rank_tree[rank]+1):
 				var slot_node = slot.instance()
-				slot_node.rect_min_size = Vector2(60,60)
-				slot_node.rect_size = Vector2(60,60)
-				node.get_node("IconPanel").add_child(slot_node)
-				slot_node.name="Slot%s"%i
-				slot_node.add_to_group("TechnologySlot")
-				slot_node.category=category
-				slot_node.rank=rank
-				slot_node.id=i
+				node.add_slot(slot_node,category,rank,i)
 
 func _init_finish_technology():
 	# 初始化树上已完成的科技

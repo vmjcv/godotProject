@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/Technology/RankPanel.gd" type="Script" id=1]
 
 [node name="Rank" type="CenterContainer"]
 margin_left = 318.0
@@ -7,6 +9,7 @@ margin_right = 318.0
 margin_bottom = 445.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

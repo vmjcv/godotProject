@@ -2,7 +2,7 @@ class_name PolicyTable
 
 extends Node
 
-# 科技存储集合结构类
+# 政策存储集合结构类
 
 enum warehouse_key {
 	TENDENCY, # 有倾向的仓库
@@ -90,11 +90,11 @@ func get_by_tendency_tree_id(tendency,tree_id):
 	
 func get_by_tree_id(tree_id):
 	# 某一位置的政策
-	return _warehouse[warehouse_key.TREE].get(tree_id,null)
+	return _warehouse[warehouse_key.TREE].get(tree_id,{})
 
 func get_tree_count():
-	return _warehouse[warehouse_key.TREE].size()
-	
+	return _warehouse[warehouse_key.TREE].size()	
+
 func _create_warehouse() -> Dictionary: 
 	var warehouse={
 				warehouse_key.TENDENCY:{

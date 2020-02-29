@@ -27,6 +27,11 @@ func _init():
 
 func _ready():
 	pass
+	
+func add_technology(node):
+	add_child(node)
+	node.name="Icon"
+	node.rect_position=Vector2(0,0)
 
 func update_styles():
 	var result_style

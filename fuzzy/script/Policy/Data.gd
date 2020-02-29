@@ -4,6 +4,15 @@ extends Button
 
 # 政策类,数据加载通过读表加载和加载玩家信息得到
 
+signal up # 弹起这个按钮的时候发出信号，目的是传递参数
+
+var styles_box = {
+	PolicyConstant.Tendency.NORMAL:preload("res://images/styleboxflat/normal_round.tres"),
+	PolicyConstant.Tendency.RADICAL:preload("res://images/styleboxflat/radical_round.tres"),
+	PolicyConstant.Tendency.NEUTRAL:preload("res://images/styleboxflat/neutral_round.tres"),
+	PolicyConstant.Tendency.CONSERVATIVE:preload("res://images/styleboxflat/conservative_round.tres")
+}
+
 var tree_id:int # 树上的显示序号，即编注是第几个格子
 var tendency:int # 政策倾向：无，激进，中性，保守 （0，1，2，3）
 var number:int # 编号
@@ -19,7 +28,7 @@ var level:int # 等级值
 var now_RD_progress:float # 现在研发进度
 var now_gain_event:bool # 完成特殊目的达成研发进度加成
 var start:bool # 已开始研发
-var finish:bool # 已研发完成
+var finish:bool setget set_finish,get_finish# 已研发完成
 var used:bool # 是否在树上被使用
 var slot_show:int setget ,slot_show_get # 返回当前格子的显示信息
 
@@ -27,6 +36,7 @@ func _init():
 	pass
 	
 func _ready():
+	connect("button_up",self,"_on_up")
 	pass
 
 func update_info(policy_number):
@@ -62,14 +72,31 @@ func save_object():
 	}
 	return save_dict
 
+func _on_up():
+	emit_signal("up",self)
+
 func _update_icon():
 	icon = load(UI_path)
+	var result_box = styles_box[tendency]
+	add_stylebox_override("hover",result_box)
+	add_stylebox_override("pressed",result_box)
+	add_stylebox_override("focus",result_box)
+	add_stylebox_override("disabled",result_box)
+	add_stylebox_override("normal",result_box)
 	return 
 	
 func slot_show_get() -> int:
 	if finish and used:
 		return tendency
 	return PolicyConstant.SlotShow.NOSHOW
+
+func set_finish(value):
+	finish = value
+	get_node("Lock").visible = not finish
+	return 
+	
+func get_finish():
+	return finish
 
 func _get_table():
 	return configs.get_table_configs(configs.policy_infoData)

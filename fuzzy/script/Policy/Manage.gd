@@ -2,6 +2,8 @@ extends Node
 
 # 政策管理类，保存政策数据和政策树相关信息，非政策类调用政策内容只能通过manage进行调用
 
+signal up
+
 var all:PolicyTable # 所有政策
 var finish:PolicyTable # 已完成政策
 var propel:PolicyTable # 研发中政策
@@ -15,7 +17,7 @@ var policy_scene = preload("res://scene/Policy/Data.tscn")
 
 func _init():
 	_load_object(PlayerArchive.get_policy_manage())
-	
+	_init_normal_policy()
 	# 测试代码，回合开始
 	start_round()
 
@@ -26,12 +28,12 @@ func _update_slot_show_map():
 		slot_show_map[number]=[policy.slot_show]
 		
 	for number in propel.keys():
-		var technology = propel.get(number)
-		slot_show_map[number]=[technology.slot_show]
+		var policy = propel.get(number)
+		slot_show_map[number]=[policy.slot_show]
 	
 	for number in selected_pool.keys():
-		var technology = selected_pool.get(number)
-		slot_show_map[number]=[technology.slot_show]
+		var policy = selected_pool.get(number)
+		slot_show_map[number]=[policy.slot_show]
 		
 	return slot_show_map
 
@@ -123,7 +125,7 @@ func _load_object(load_dict):
 		var policy = policy_scene.instance()
 		policy.update_info(number)
 		all.append(policy)
-		# _registered_technology_signal(technology)
+		_registered_policy_signal(policy)
 	var finish_table = load_dict.get("finish",all.get_by_tendency(PolicyConstant.Tendency.NORMAL))
 	finish=PolicyTable.new(null)
 	for number in finish_table:
@@ -151,3 +153,27 @@ func _load_object(load_dict):
 		
 	add_progress_number = load_dict.get("add_progress_number",recalculate_add_progress_number())
 	remaining_progress = load_dict.get("remaining_progress",0)
+
+func _init_normal_policy():
+	# 初始化当前已选政策
+	for i in range(1,all.get_tree_count()+1):
+		var policy_list = all.get_by_tree_id(i)
+		var for_flag = true
+		var normal_number
+		for key in policy_list:
+			if policy_list[key].tendency == PolicyConstant.Tendency.NORMAL:
+				normal_number = policy_list[key].number
+				policy_list[key].finish = true
+			if policy_list[key].used:
+				for_flag = false
+				break
+		if for_flag:
+			policy_list[normal_number].used = true
+			
+func _registered_policy_signal(policy):
+	policy.connect("up", self, "_up_policy_button")
+
+func _up_policy_button(policy):
+	now_select_policy = policy
+	emit_signal("up",policy)
+	pass

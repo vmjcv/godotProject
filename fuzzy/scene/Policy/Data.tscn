@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/Policy/Data.gd" type="Script" id=1]
 [ext_resource path="res://images/styleboxflat/conservative_round.tres" type="StyleBox" id=2]
+[ext_resource path="res://images/other/lock.png" type="Texture" id=3]
 
 [node name="Icon" type="Button"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = ExtResource( 2 )
@@ -15,6 +18,23 @@ custom_styles/normal = ExtResource( 2 )
 clip_text = true
 expand_icon = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lock" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = -25.0
+margin_right = 25.0
+margin_bottom = 25.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
