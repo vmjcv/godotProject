@@ -5,6 +5,11 @@ extends Control
 var data = preload("res://scene/Policy/Data.tscn")
 var slot = preload("res://scene/Policy/Slot.tscn")
 
+onready var Begin = get_node("BaseContainer/PolicyInfo/ProgressBar/HBoxContainer/Begin")
+onready var Use = get_node("BaseContainer/PolicyInfo/ProgressBar/HBoxContainer/Use")
+onready var Policy_Progress = get_node("BaseContainer/PolicyInfo/ProgressBar/HBoxContainer/PolicyProgress")
+
+
 onready var Tree_Grid = get_node("BaseContainer/Tree/TreePanel/GridPanel")
 
 onready var Propel_Slot = get_node("BaseContainer/Tree/GlobalInfoPanel/PropelPanel/PropelSlot")
@@ -78,5 +83,18 @@ func _init_selected_pool_policy():
 
 func _up(policy):
 	# 按钮弹起,更新现在点击的政策信息
-	print("11111111111111")
+	if policy.used:
+		Begin.visible = false
+		Use.visible = false
+	elif policy.finish:
+		Begin.visible = false
+		Use.visible = true
+	elif policy.start:
+		Begin.visible = false
+		Use.visible = false
+	else:
+		Begin.visible = true
+		Use.visible = false
+	Policy_Progress.max_value = policy.all_progress
+	Policy_Progress.value = policy.now_RD_progress
 	return
