@@ -22,6 +22,8 @@ func _ready():
 		update_info(number)
 		ItemManage._registered_item_signal(self)
 	pass
+	
+
 
 func update_info(item_number):
 	var info = _get_table_number(item_number)

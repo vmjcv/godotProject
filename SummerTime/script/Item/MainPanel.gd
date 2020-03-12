@@ -59,10 +59,12 @@ func _add_own_pool(item):
 func _resize_to_big(item):
 	item.rect_min_size = Vector2(80,80)
 	item.rect_size = Vector2(80,80)
+	item.get_node("Area2D/CollisionShape2D").shape.extents=Vector2(80,80)
 
 func _resize_to_small(item):
 	item.rect_min_size = Vector2(60,60)
 	item.rect_size = Vector2(60,60)
+	item.get_node("Area2D/CollisionShape2D").shape.extents=Vector2(60,60)
 
 func _reset_position(item):
 	item.rect_position = Vector2(0,0)

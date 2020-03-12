@@ -110,11 +110,11 @@ func _up_item_button(item):
 	emit_signal("up",item)
 	pass
 	
-func mouse_entered(item):
+func area_entered(item):
 	now_mouse_entered_item = item
 	pass
 
-func mouse_exited(item):
+func area_exited(item):
 	if now_mouse_entered_item==item:
 		now_mouse_entered_item=null
 	pass

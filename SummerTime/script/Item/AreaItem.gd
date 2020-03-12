@@ -1,25 +1,20 @@
 extends Area2D
-#signal _mouse_entered
-#signal _mouse_exited
+signal _area_entered
+signal _area_exited
 
 export var number = 0
 
 func _ready():
-	#connect("mouse_entered",self,"_mouse_entered")
-	#connect("mouse_exited",self,"_mouse_exited")
-	#connect("_mouse_entered",ItemManage,"mouse_entered")
-	#connect("_mouse_exited",ItemManage,"mouse_exited")
+	connect("area_entered",self,"_area_entered")
+	connect("area_exited",self,"_area_exited")
+	connect("_area_entered",ItemManage,"area_entered")
+	connect("_area_exited",ItemManage,"area_exited")
 	pass # Replace with function body.
 
-func _mouse_entered():
+func _area_entered(other_area):
 	print("1111111111111")
-	emit_signal("_mouse_entered",self)
+	emit_signal("_area_entered",self)
 	
-func _mouse_exited():
+func _area_exited(other_area):
 	print("222222222")
-	emit_signal("_mouse_exited",self)
-
-
-func _on_Area2D_mouse_entered():
-	print("111111111")
-	pass # Replace with function body.
+	emit_signal("_area_exited",self)
