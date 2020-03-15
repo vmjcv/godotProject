@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/Item/Data.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/bg/bg5.jpg" type="Texture" id=2]
+[ext_resource path="res://script/Bg/Data.gd" type="Script" id=3]
+[ext_resource path="res://scene/Item/AreaItem.tscn" type="PackedScene" id=4]
+
+[node name="TextureRect" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item1" parent="." instance=ExtResource( 1 )]
+margin_left = 155.452
+margin_top = 268.34
+margin_right = 235.452
+margin_bottom = 348.34
+number = 1
+
+[node name="Item2" parent="." instance=ExtResource( 1 )]
+margin_left = 767.867
+margin_top = 327.653
+margin_right = 847.867
+margin_bottom = 407.653
+number = 2
+
+[node name="Item3" parent="." instance=ExtResource( 1 )]
+margin_left = 816.122
+margin_top = 92.5309
+margin_right = 896.122
+margin_bottom = 172.531
+number = 3
+
+[node name="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 658.241, 179.096 )
+number = 1
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+position = Vector2( 143.618, -0.243204 )
+scale = Vector2( 44.1426, 10.7503 )
+polygon = PoolVector2Array( -4.03391, -3.51419, -3.83977, 11.7051, -9.2542, 11.0666 )
+
+[node name="Area2D2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 658.241, 179.096 )
+number = 1
+
+[node name="CollisionPolygon2D" parent="Area2D2" index="0"]
+position = Vector2( -107.401, -156.507 )
+scale = Vector2( 26.8303, 6.87847 )
+polygon = PoolVector2Array( -3.09798, 0.345722, -2.80626, 1.09032, -2.33938, 1.99727, -1.53913, 2.50908, -0.998596, 2.52485, -0.510315, 2.14426, -0.0742435, 1.46128, 0.245644, 0.584473, 0.718918, -1.03489, 1.00653, -3.23366, -3.69571, -3.23366, -3.44604, -1.37148 )
+
+[editable path="Item1"]
+
+[editable path="Area2D"]
+
+[editable path="Area2D2"]

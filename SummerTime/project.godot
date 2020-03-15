@@ -18,10 +18,22 @@ _global_script_classes=[ {
 "class": "ItemTable",
 "language": "GDScript",
 "path": "res://script/Item/Table.gd"
+}, {
+"base": "TextureRect",
+"class": "SceneData",
+"language": "GDScript",
+"path": "res://script/Bg/Data.gd"
+}, {
+"base": "Node",
+"class": "SceneTable",
+"language": "GDScript",
+"path": "res://script/Bg/Table.gd"
 } ]
 _global_script_class_icons={
 "ItemData": "",
-"ItemTable": ""
+"ItemTable": "",
+"SceneData": "",
+"SceneTable": ""
 }
 
 [application]
@@ -37,9 +49,17 @@ PlayerArchive="*res://script/PlayerArchive.gd"
 ItemConstant="*res://script/Item/Constant.gd"
 ItemManage="*res://script/Item/Manage.gd"
 ItemMainPanel="*res://scene/Item/MainPanel.tscn"
+ItemPopup="*res://scene/Item/Popup.tscn"
+SceneConstant="*res://script/Bg/Constant.gd"
+SceneChange="*res://scene/Bg/SceneChange.tscn"
+SceneManage="*res://script/Bg/Manage.gd"
 
 [display]
 
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
+window/size/always_on_top=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"

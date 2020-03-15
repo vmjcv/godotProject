@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://images/bg/bg1.jpg" type="Texture" id=2]
+[ext_resource path="res://images/bg/bg4.jpg" type="Texture" id=2]
 [ext_resource path="res://script/Bg/Data.gd" type="Script" id=3]
 [ext_resource path="res://scene/Item/AreaItem.tscn" type="PackedScene" id=4]
 
@@ -16,24 +16,24 @@ __meta__ = {
 }
 
 [node name="Area2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 888, 248 )
-number = 6
-all_number = 1011
+position = Vector2( 658.241, 179.096 )
+number = 12
+all_number = 1042
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-position = Vector2( 432, -80 )
-scale = Vector2( 44.1426, 15.635 )
-polygon = PoolVector2Array( -3.98708, -3.07003, -3.80585, 20.4669, -5.79939, 20.4669, -5.79939, -3.07003 )
+position = Vector2( 452.496, 130.145 )
+scale = Vector2( 54.1376, 17.0659 )
+polygon = PoolVector2Array( -4.04927, -3.73444, -4.27542, 13.3242, -9.42668, 13.0053, -9.36606, -3.95551 )
 
 [node name="Area2D2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 784, 179.096 )
-number = 7
-all_number = 1012
+position = Vector2( 658.241, 179.096 )
+number = 11
+all_number = 1041
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
-position = Vector2( -95.9999, -155.096 )
+position = Vector2( -326.966, 88.5647 )
 scale = Vector2( 26.8303, 6.87847 )
-polygon = PoolVector2Array( -3.27987, 2.3261, -2.59075, 2.80391, -2.13464, 3.10891, -1.73065, 3.15974, -0.844477, 2.70225, -0.388361, 2.11767, -0.010437, 1.45685, 0.463181, 0.529868, 0.965919, -1.6437, 1.21012, -3.45027, -4.51947, -3.49932, -4.04381, -0.0681248 )
+polygon = PoolVector2Array( 8.00247, 38.9052, 8.10387, -3.81376, -3.17228, -4.24754, -2.54375, 38.9052 )
 
 [editable path="Area2D"]
 
