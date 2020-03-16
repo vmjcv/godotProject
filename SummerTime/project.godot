@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Summer Time"
-run/main_scene="res://scene/Bg/Scene1.tscn"
+run/main_scene="res://scene/Bg/MainScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
