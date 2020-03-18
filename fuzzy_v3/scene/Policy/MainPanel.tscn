@@ -23,39 +23,39 @@ __meta__ = {
 }
 
 [node name="Tree" type="VBoxContainer" parent="BaseContainer"]
-margin_right = 954.0
-margin_bottom = 1080.0
+margin_right = 894.0
+margin_bottom = 1200.0
 size_flags_horizontal = 3
 
 [node name="TreePanel" type="CenterContainer" parent="BaseContainer/Tree"]
-margin_right = 954.0
-margin_bottom = 926.0
+margin_right = 894.0
+margin_bottom = 1046.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GridPanel" type="GridContainer" parent="BaseContainer/Tree/TreePanel"]
-margin_left = 477.0
-margin_top = 463.0
-margin_right = 477.0
-margin_bottom = 463.0
+margin_left = 447.0
+margin_top = 523.0
+margin_right = 447.0
+margin_bottom = 523.0
 columns = 3
 
 [node name="GlobalInfoPanel" type="VBoxContainer" parent="BaseContainer/Tree"]
-margin_top = 930.0
-margin_right = 954.0
-margin_bottom = 1080.0
+margin_top = 1050.0
+margin_right = 894.0
+margin_bottom = 1200.0
 
 [node name="PropelPanel" type="HBoxContainer" parent="BaseContainer/Tree/GlobalInfoPanel"]
-margin_right = 954.0
+margin_right = 894.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 0, 150 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 
 [node name="PropelTitle" type="Label" parent="BaseContainer/Tree/GlobalInfoPanel/PropelPanel"]
-margin_left = 217.0
+margin_left = 202.0
 margin_top = 68.0
-margin_right = 258.0
+margin_right = 243.0
 margin_bottom = 82.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -64,33 +64,33 @@ align = 1
 valign = 1
 
 [node name="PropelSlot" parent="BaseContainer/Tree/GlobalInfoPanel/PropelPanel" instance=ExtResource( 1 )]
-margin_left = 656.0
+margin_left = 611.0
 margin_top = 15.0
-margin_right = 776.0
+margin_right = 731.0
 margin_bottom = 135.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="VSeparator" type="VSeparator" parent="BaseContainer"]
-margin_left = 958.0
-margin_right = 962.0
-margin_bottom = 1080.0
+margin_left = 898.0
+margin_right = 902.0
+margin_bottom = 1200.0
 
 [node name="PolicyInfo" type="VBoxContainer" parent="BaseContainer"]
-margin_left = 966.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_left = 906.0
+margin_right = 1800.0
+margin_bottom = 1200.0
 size_flags_horizontal = 3
 
 [node name="Description" type="Panel" parent="BaseContainer/PolicyInfo"]
-margin_right = 954.0
+margin_right = 894.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = ExtResource( 4 )
 
 [node name="ProgressBar" type="Panel" parent="BaseContainer/PolicyInfo"]
 margin_top = 204.0
-margin_right = 954.0
+margin_right = 894.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = ExtResource( 4 )
@@ -105,9 +105,9 @@ __meta__ = {
 }
 
 [node name="PolicyProgress" type="TextureProgress" parent="BaseContainer/PolicyInfo/ProgressBar/HBoxContainer"]
-margin_left = 430.0
+margin_left = 400.0
 margin_top = 51.0
-margin_right = 524.0
+margin_right = 494.0
 margin_bottom = 148.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -156,7 +156,7 @@ expand_icon = true
 
 [node name="Bonus" type="Panel" parent="BaseContainer/PolicyInfo"]
 margin_top = 408.0
-margin_right = 954.0
+margin_right = 894.0
 margin_bottom = 608.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = ExtResource( 4 )
