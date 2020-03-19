@@ -1,37 +1,68 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://images/main/main.png" type="Texture" id=1]
-[ext_resource path="res://shader/fog.shader" type="Shader" id=2]
+[ext_resource path="res://shader/glitch.shader" type="Shader" id=1]
+[ext_resource path="res://shader/rain.shader" type="Shader" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://shader/rain.shader" type="Shader" id=4]
+[ext_resource path="res://images/main/房子.png" type="Texture" id=4]
+[ext_resource path="res://shader/fog.shader" type="Shader" id=5]
+[ext_resource path="res://shaderTexture/test.jpg" type="Texture" id=6]
+[ext_resource path="res://images/main/main.png" type="Texture" id=7]
+[ext_resource path="res://shaderTexture/噪点.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
-shader_param/color = Vector3( 0.1, 0.2, 0.6 )
-shader_param/OCTAVES = 4
+shader = ExtResource( 1 )
+shader_param/dispAmt = 0.001
+shader_param/abberationAmtX = 0.005
+shader_param/abberationAmtY = 0.005
+shader_param/abberationAmtScaleX = 0.002
+shader_param/abberationAmtScaleY = 0.002
+shader_param/dispSize = 1.0
+shader_param/maxAlpha = 0.7
+shader_param/displace = ExtResource( 6 )
+shader_param/my_texture = ExtResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 4 )
+shader = ExtResource( 5 )
+shader_param/color = Color( 0.8, 0.890196, 0.894118, 1 )
+shader_param/OCTAVES = 4
 
-[node name="TextureRect" type="TextureRect"]
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/LOD = 3.5
+shader_param/MainTex = ExtResource( 7 )
+shader_param/NoiseTex = ExtResource( 8 )
+
+[node name="ColorRect" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon" type="Sprite" parent="."]
-visible = false
+[node name="icon3" type="Sprite" parent="TextureRect"]
 material = SubResource( 1 )
-position = Vector2( 879.206, 588.714 )
-scale = Vector2( 29.8831, 20.954 )
+position = Vector2( 891.435, 594.413 )
+scale = Vector2( 28.1092, 18.983 )
 texture = ExtResource( 3 )
 
-[node name="icon2" type="Sprite" parent="."]
+[node name="icon" type="Sprite" parent="TextureRect"]
+visible = false
 material = SubResource( 2 )
-position = Vector2( 879.206, 588.714 )
-scale = Vector2( 29.8831, 20.954 )
+position = Vector2( 870.63, 647.454 )
+scale = Vector2( 32.1085, 23.4827 )
+texture = ExtResource( 3 )
+
+[node name="icon2" type="Sprite" parent="TextureRect"]
+material = SubResource( 3 )
+position = Vector2( -729.279, 1022.25 )
+scale = Vector2( 11.9809, 8.73032 )
 texture = ExtResource( 3 )

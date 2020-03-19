@@ -54,8 +54,8 @@ PolicyManage="*res://script/Policy/Manage.gd"
 
 window/size/width=1800
 window/size/height=1200
-window/size/test_width=600
-window/size/test_height=400
+window/size/test_width=1800
+window/size/test_height=1200
 
 [rendering]
 
