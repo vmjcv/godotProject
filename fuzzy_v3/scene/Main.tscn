@@ -1,35 +1,33 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://shader/glitch.shader" type="Shader" id=1]
 [ext_resource path="res://shader/rain.shader" type="Shader" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://images/main/房子.png" type="Texture" id=4]
 [ext_resource path="res://shader/fog.shader" type="Shader" id=5]
-[ext_resource path="res://shaderTexture/test.jpg" type="Texture" id=6]
-[ext_resource path="res://images/main/main.png" type="Texture" id=7]
 [ext_resource path="res://shaderTexture/噪点.png" type="Texture" id=8]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 1 )
 shader_param/dispAmt = 0.001
 shader_param/abberationAmtX = 0.005
 shader_param/abberationAmtY = 0.005
 shader_param/abberationAmtScaleX = 0.002
 shader_param/abberationAmtScaleY = 0.002
-shader_param/dispSize = 1.0
+shader_param/dispSize = null
 shader_param/maxAlpha = 0.7
-shader_param/displace = ExtResource( 6 )
+shader_param/displace = ExtResource( 8 )
 shader_param/my_texture = ExtResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 5 )
-shader_param/color = Color( 0.8, 0.890196, 0.894118, 1 )
+shader_param/color = Color( 0.533333, 0.768627, 0.776471, 1 )
 shader_param/OCTAVES = 4
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 2 )
-shader_param/LOD = 3.5
-shader_param/MainTex = ExtResource( 7 )
+shader_param/LOD = 3.0
+shader_param/MainTex = ExtResource( 4 )
 shader_param/NoiseTex = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect"]
@@ -40,28 +38,24 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon3" type="Sprite" parent="TextureRect"]
-material = SubResource( 1 )
-position = Vector2( 903.477, 600.434 )
-scale = Vector2( 28.1092, 18.983 )
-texture = ExtResource( 3 )
-
 [node name="icon" type="Sprite" parent="TextureRect"]
 material = SubResource( 2 )
-position = Vector2( 870.63, 647.454 )
+position = Vector2( 884.606, 609.119 )
 scale = Vector2( 32.1085, 23.4827 )
 texture = ExtResource( 3 )
 
 [node name="icon2" type="Sprite" parent="TextureRect"]
 material = SubResource( 3 )
-position = Vector2( 899.189, 415.914 )
-scale = Vector2( 28.4978, 33.0673 )
+position = Vector2( 937.035, 562.28 )
+scale = Vector2( 37.8327, 33.0673 )
 texture = ExtResource( 3 )
