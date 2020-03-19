@@ -50,12 +50,11 @@ __meta__ = {
 
 [node name="icon3" type="Sprite" parent="TextureRect"]
 material = SubResource( 1 )
-position = Vector2( 891.435, 594.413 )
+position = Vector2( 903.477, 600.434 )
 scale = Vector2( 28.1092, 18.983 )
 texture = ExtResource( 3 )
 
 [node name="icon" type="Sprite" parent="TextureRect"]
-visible = false
 material = SubResource( 2 )
 position = Vector2( 870.63, 647.454 )
 scale = Vector2( 32.1085, 23.4827 )
@@ -63,6 +62,6 @@ texture = ExtResource( 3 )
 
 [node name="icon2" type="Sprite" parent="TextureRect"]
 material = SubResource( 3 )
-position = Vector2( -729.279, 1022.25 )
-scale = Vector2( 11.9809, 8.73032 )
+position = Vector2( 899.189, 415.914 )
+scale = Vector2( 28.4978, 33.0673 )
 texture = ExtResource( 3 )

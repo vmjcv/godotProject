@@ -16,6 +16,14 @@ float shading(vec2 dir)
     return s;
 }
 
+//----------------------------
+// Eliemichel's technique
+//----------------------------
+
+// uv   - texcoord for looking up the background texture
+// p    - a 2d position for noise lookup
+// curr - the current output color
+// time - scaled time for this layer
 vec4 layerEliemichel(vec2 uv, vec2 p, vec4 curr, float time)
 {
     vec2 x = vec2(30); // controls the size vs density
@@ -35,23 +43,31 @@ vec4 layerEliemichel(vec2 uv, vec2 p, vec4 curr, float time)
     return curr;
 }
 
+//----------------------------
+// BigWIngs' technique
+//----------------------------
+
+
 vec3 n31(float p)
 {
+    //  3 out, 1 in... DAVE HOSKINS
    vec3 p3 = fract(vec3(p) * vec3(.1031,.11369,.13787));
    p3 += dot(p3, p3.yzx + 19.19);
    return fract(vec3((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y, (p3.y+p3.z)*p3.x));
 }
 
 float sawTooth(float t) {
+	
     return cos(t+cos(t))+sin(2.*t)*.2+sin(4.*t)*.02;
 }
 float deltaSawTooth(float t) {
+	
     return 0.4*cos(2.*t)+0.08*cos(4.*t) - (1.-sin(t))*sin(t+cos(t));
 }
 
+
 vec3 getDrops(vec2 uv, float seed, float t)
 {
-    
     vec2 o = vec2(0.);
     
     uv.y += t * 0.05;
@@ -76,10 +92,12 @@ vec3 getDrops(vec2 uv, float seed, float t)
     vec2 trailPos = vec2(bd.x*ts, (fract(bd.y*ts*2.-t*2.)-.5)*.5);
     
     bd.y += slide*2.;								// make drops slide down
-  
+    
+    //#ifdef HIGH_QUALITY
     float dropShape = bd.x*bd.x;
     dropShape *= deltaSawTooth(t);
     bd.y += dropShape;								// change shape of drop when it is falling
+   	//#endif
     
     float d = length(bd);							// distance to main drop
     
@@ -91,17 +109,18 @@ vec3 getDrops(vec2 uv, float seed, float t)
     float dropTrail = 0.0;//smoothstep(.1, .002, td);
     
     dropTrail *= trailMask;
-    o = mix(vec2(1.0,0.5), vec2(1.0,0.5), 0);		// mix main drop and drop trail
+    o = mix(bd*mainDrop, trailPos, dropTrail);		// mix main drop and drop trail
+    
     return vec3(o, d);
 }
 
 vec4 layerBigWIngs(vec2 uv, vec2 p, vec4 curr, float time)
 {
-    vec3 drop = getDrops(p, 1., time*10.0);
+    vec3 drop = getDrops(p, 1., time);
     
     if (length(drop.xy) > 0.0)
     {
-        vec2 offset = -drop.xy * (1.0-drop.z);
+        vec2 offset = -drop.xy * (1.0 - drop.z);
     	curr = texture(MainTex, uv + offset);
         curr += shading(offset) * curr * 0.5;
     }
@@ -114,21 +133,21 @@ vec4 layerBigWIngs(vec2 uv, vec2 p, vec4 curr, float time)
 void fragment()
 {
     // background
-    vec4 ret=textureLod(MainTex, UV, LOD);
+    vec4 ret=textureLod(SCREEN_TEXTURE, SCREEN_UV, LOD);
     
     // use BigWIngs layer as base drops
-    ret=layerBigWIngs(UV, UV * 2.2, ret, TIME * 0.5);
+    ret=layerBigWIngs(SCREEN_UV, SCREEN_UV * 2.2, ret, TIME * 1.0);
     
     // add Eliemichel layers with fbm (see https://www.shadertoy.com/view/lsl3RH) as detailed drops.
-    //const mat2 m = mat2(vec2(0.80,  0.60) ,vec2(-0.60,  0.80 ));
-    //vec2 p = UV;
+    const mat2 m = mat2(vec2(0.80,  0.60) ,vec2(-0.60,  0.80 ));
+    vec2 p = SCREEN_UV;
     
-    //ret = layerEliemichel(UV, p + vec2(0, TIME * 0.01), ret, TIME * 0.25);
-    //p = m * p * 2.02;
+    ret = layerEliemichel(SCREEN_UV, p + vec2(0, TIME * 0.01), ret, TIME * 0.25);
+    p = m * p * 2.02;
     
-    //ret = layerEliemichel(UV, p, ret, TIME * 0.125);
-    //p = m * p * 1.253;
+    ret = layerEliemichel(SCREEN_UV, p, ret, TIME * 0.125);
+    p = m * p * 1.253;
     
-    //COLOR = layerEliemichel(UV, p, ret, TIME * 0.125);
-    COLOR=ret;
+	ret= layerEliemichel(SCREEN_UV, p, ret, TIME * 0.125);
+    COLOR = ret;
 }
