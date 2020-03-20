@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://shader/glitch.shader" type="Shader" id=1]
 [ext_resource path="res://shader/rain.shader" type="Shader" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://shader/tile_glitch.shader" type="Shader" id=6]
 [ext_resource path="res://images/main/标题.png" type="Texture" id=7]
 [ext_resource path="res://shaderTexture/噪点.png" type="Texture" id=8]
+[ext_resource path="res://shader/breath.shader" type="Shader" id=9]
+[ext_resource path="res://images/main/字方案.png" type="Texture" id=10]
+[ext_resource path="res://shader/title_breath.shader" type="Shader" id=11]
+[ext_resource path="res://images/main/字.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -21,27 +25,34 @@ shader_param/maxAlpha = 0.7
 shader_param/displace = ExtResource( 8 )
 shader_param/my_texture = ExtResource( 4 )
 
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 11 )
+
 [sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 6 )
+shader_param/my_texture = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
 shader_param/color = Color( 0.596078, 0.713726, 0.717647, 0.0235294 )
 shader_param/OCTAVES = 4
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 2 )
 shader_param/LOD = 3.5
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
+"_edit_horizontal_guides_": [ 983.594 ],
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,48 +60,42 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="icon3" type="Sprite" parent="TextureRect"]
+material = SubResource( 5 )
+position = Vector2( 307.636, 343.133 )
+scale = Vector2( 0.725226, 0.862476 )
+texture = ExtResource( 10 )
+
+[node name="字方案" type="Sprite" parent="TextureRect/icon3"]
+material = SubResource( 6 )
+position = Vector2( -40.4508, -1.89453 )
+scale = Vector2( 0.267668, 0.267668 )
+texture = ExtResource( 12 )
+
+[node name="TextureRect3" type="Sprite" parent="TextureRect"]
+material = SubResource( 2 )
+position = Vector2( 275.743, 82.995 )
+scale = Vector2( 0.194711, 0.247451 )
+texture = ExtResource( 7 )
 
 [node name="icon" type="Sprite" parent="TextureRect"]
-visible = false
-material = SubResource( 2 )
-position = Vector2( 303.063, 203.811 )
+material = SubResource( 3 )
+position = Vector2( 303.921, 201.917 )
 scale = Vector2( 9.48223, 6.30593 )
 texture = ExtResource( 3 )
-
-[node name="icon2" type="Sprite" parent="TextureRect"]
-visible = false
-material = SubResource( 3 )
-position = Vector2( 302.802, 225.717 )
-scale = Vector2( 10.8996, 8.32308 )
-texture = ExtResource( 3 )
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 71.5846
-margin_top = -21.8868
-margin_right = -68.4154
-margin_bottom = 16.1132
-texture = ExtResource( 3 )
-expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="icon2" type="Sprite" parent="TextureRect"]
 material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 95.9034
-margin_top = 418.257
-margin_right = -37.0967
-margin_bottom = 135.257
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 5
+position = Vector2( 275.358, 250.436 )
+scale = Vector2( 10.8996, 8.32308 )
+texture = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
