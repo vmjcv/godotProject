@@ -1,5 +1,5 @@
 shader_type canvas_item;
-
+render_mode blend_mul;
 uniform float LOD = 3.5;//控制背景的模糊程度
 uniform sampler2D NoiseTex : hint_albedo;//噪声纹理
 
@@ -132,7 +132,6 @@ void fragment()
     
     // use BigWIngs layer as base drops
     ret=layerBigWIngs(SCREEN_UV, SCREEN_UV * 2.2, ret, TIME * 1.0,SCREEN_TEXTURE);
-    
     // add Eliemichel layers with fbm (see https://www.shadertoy.com/view/lsl3RH) as detailed drops.
     const mat2 m = mat2(vec2(0.80,  0.60) ,vec2(-0.60,  0.80 ));
     vec2 p = SCREEN_UV;
@@ -145,5 +144,4 @@ void fragment()
     
 	ret= layerEliemichel(SCREEN_UV, p, ret, TIME * 0.125,SCREEN_TEXTURE);
     COLOR = ret;
-	
 }

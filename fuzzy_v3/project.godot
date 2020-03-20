@@ -39,6 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="fuzzy"
+run/main_scene="res://scene/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -59,6 +60,5 @@ window/size/test_height=400
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"

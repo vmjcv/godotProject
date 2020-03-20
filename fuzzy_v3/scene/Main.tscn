@@ -25,30 +25,32 @@ shader_param/maxAlpha = 0.7
 shader_param/displace = ExtResource( 8 )
 shader_param/my_texture = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 9 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 11 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 6 )
 shader_param/my_texture = ExtResource( 8 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 5 )
 shader_param/color = Color( 0.596078, 0.713726, 0.717647, 0.0235294 )
 shader_param/OCTAVES = 4
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 2 )
 shader_param/LOD = 3.5
+shader_param/NoiseTex = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_horizontal_guides_": [ 983.594 ],
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -65,37 +67,31 @@ __meta__ = {
 }
 
 [node name="icon3" type="Sprite" parent="TextureRect"]
-material = SubResource( 5 )
+material = SubResource( 2 )
 position = Vector2( 307.636, 343.133 )
 scale = Vector2( 0.725226, 0.862476 )
 texture = ExtResource( 10 )
 
 [node name="字方案" type="Sprite" parent="TextureRect/icon3"]
-material = SubResource( 6 )
+material = SubResource( 3 )
 position = Vector2( -40.4508, -1.89453 )
 scale = Vector2( 0.267668, 0.267668 )
 texture = ExtResource( 12 )
 
 [node name="TextureRect3" type="Sprite" parent="TextureRect"]
-material = SubResource( 2 )
+material = SubResource( 4 )
 position = Vector2( 275.743, 82.995 )
 scale = Vector2( 0.194711, 0.247451 )
 texture = ExtResource( 7 )
 
 [node name="icon" type="Sprite" parent="TextureRect"]
-material = SubResource( 3 )
-position = Vector2( 303.921, 201.917 )
+material = SubResource( 5 )
+position = Vector2( 296.996, 200.749 )
 scale = Vector2( 9.48223, 6.30593 )
 texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="icon2" type="Sprite" parent="TextureRect"]
-material = SubResource( 4 )
-position = Vector2( 275.358, 250.436 )
+material = SubResource( 6 )
+position = Vector2( 307.106, 167.546 )
 scale = Vector2( 10.8996, 8.32308 )
 texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}

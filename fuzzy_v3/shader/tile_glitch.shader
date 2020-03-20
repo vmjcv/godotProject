@@ -5,7 +5,7 @@ void fragment()
 {
 	vec2 block = floor(FRAGCOORD.xy /vec2(16));
 	vec2 uv_noise = block / vec2(64);
-	float time = TIME*0.15;
+	float time = TIME*1.2;
 	uv_noise += floor(vec2(time) * vec2(1234.0, 3543.0)) / vec2(64) ;
 	float block_thresh = pow(fract(time * 1236.0453), 2.0) * 0.2;
 	float line_thresh = pow(fract(time * 2236.0453), 3.0) * 0.8;
