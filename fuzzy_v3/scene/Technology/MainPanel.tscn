@@ -21,47 +21,47 @@ __meta__ = {
 }
 
 [node name="ThreeTree" type="HBoxContainer" parent="BaseContainer"]
-margin_right = 1920.0
-margin_bottom = 867.0
+margin_right = 1080.0
+margin_bottom = 507.0
 size_flags_vertical = 3
 
 [node name="Descent" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
-margin_right = 637.0
-margin_bottom = 867.0
+margin_right = 357.0
+margin_bottom = 507.0
 size_flags_horizontal = 7
 alignment = 1
 
 [node name="Science" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
-margin_left = 641.0
-margin_right = 1278.0
-margin_bottom = 867.0
+margin_left = 361.0
+margin_right = 718.0
+margin_bottom = 507.0
 size_flags_horizontal = 7
 alignment = 1
 
 [node name="Magic" type="VBoxContainer" parent="BaseContainer/ThreeTree"]
-margin_left = 1282.0
-margin_right = 1920.0
-margin_bottom = 867.0
+margin_left = 722.0
+margin_right = 1080.0
+margin_bottom = 507.0
 size_flags_horizontal = 7
 alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="BaseContainer"]
-margin_top = 871.0
-margin_right = 1920.0
-margin_bottom = 876.0
+margin_top = 511.0
+margin_right = 1080.0
+margin_bottom = 516.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="SelectedPanel" type="CenterContainer" parent="BaseContainer"]
-margin_top = 880.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_top = 520.0
+margin_right = 1080.0
+margin_bottom = 720.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
 
 [node name="SelectedGridPanel" type="GridContainer" parent="BaseContainer/SelectedPanel"]
-margin_left = 960.0
+margin_left = 540.0
 margin_top = 100.0
-margin_right = 960.0
+margin_right = 540.0
 margin_bottom = 100.0
 custom_constants/vseparation = 15
 custom_constants/hseparation = 40

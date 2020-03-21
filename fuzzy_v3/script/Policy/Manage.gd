@@ -85,7 +85,7 @@ func start_round():
 	add_progress(add_progress_number)
 	_clear_now_select_policy()
 	# 发射信号
-	emit_signal("start_round")
+	# emit_signal("start_round")
 
 func recalculate_parameter():
 	# 重算关键参数

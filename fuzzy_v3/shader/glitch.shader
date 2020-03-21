@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode unshaded;
+render_mode blend_mul;
 
 // 两种特效叠加，毛刺特效和扭曲特效
 uniform sampler2D displace : hint_albedo;

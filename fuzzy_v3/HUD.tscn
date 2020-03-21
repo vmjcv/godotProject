@@ -1,19 +1,27 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://images/styleboxflat/purple.tres" type="StyleBox" id=1]
-[ext_resource path="res://images/icon/时空点.png" type="Texture" id=2]
-[ext_resource path="res://images/icon/科技.png" type="Texture" id=3]
-[ext_resource path="res://images/icon/遗落物.png" type="Texture" id=4]
+[ext_resource path="res://images/icon/money.png" type="Texture" id=2]
+[ext_resource path="res://images/icon/tenchnology.png" type="Texture" id=3]
+[ext_resource path="res://images/icon/yiruowu.png" type="Texture" id=4]
 [ext_resource path="res://images/styleboxflat/blue.tres" type="StyleBox" id=5]
 [ext_resource path="res://images/styleboxflat/yellow.tres" type="StyleBox" id=6]
-[ext_resource path="res://images/icon/政府.png" type="Texture" id=7]
-[ext_resource path="res://images/icon/特殊字符.png" type="Texture" id=8]
-[ext_resource path="res://images/icon/统计报表.png" type="Texture" id=9]
+[ext_resource path="res://images/icon/policy.png" type="Texture" id=7]
+[ext_resource path="res://images/icon/char.png" type="Texture" id=8]
+[ext_resource path="res://images/icon/biao.png" type="Texture" id=9]
 [ext_resource path="res://images/styleboxflat/orange.tres" type="StyleBox" id=10]
 [ext_resource path="res://PopupPanel.gd" type="Script" id=11]
 [ext_resource path="res://CheckSize.gd" type="Script" id=12]
-[ext_resource path="res://images/icon/历史记录.png" type="Texture" id=13]
-[ext_resource path="res://images/icon/设置.png" type="Texture" id=14]
+[ext_resource path="res://images/icon/history.png" type="Texture" id=13]
+[ext_resource path="res://images/icon/setting.png" type="Texture" id=14]
+
+
+
+
+
+
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 3.0

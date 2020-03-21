@@ -53,10 +53,7 @@ PolicyManage="*res://script/Policy/Manage.gd"
 
 [display]
 
-window/size/width=600
-window/size/height=400
-window/size/test_width=600
-window/size/test_height=400
+window/size/always_on_top=true
 
 [rendering]
 

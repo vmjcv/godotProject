@@ -1,4 +1,5 @@
 shader_type canvas_item;
+render_mode blend_mix;
 uniform vec4 color : hint_color= vec4(0.05,0.05,0.6,1);
 uniform int OCTAVES = 4;
 
@@ -113,7 +114,7 @@ float fbm(vec2 coord){
 
 
 void fragment() {
-	vec2 coord = UV * 10.0;
+	vec2 coord = UV * 5.0;
 	
 	float noise;
 //	noise = rand(coord);
@@ -122,13 +123,11 @@ void fragment() {
 //	noise = cellular_noise(coord);
 	noise = fbm(coord);
 
-	vec2 motion = vec2( fbm(coord + vec2(TIME * -0.15, TIME * 0.15)) );
+	vec2 motion = vec2( fbm(coord + vec2(TIME * 0.5, TIME * 0.15)) );
 
 	float final = fbm(coord + motion);
 
-	COLOR = vec4(color.rgb, final * 0.5);
-	
-	
-	
-	
+	final*=smoothstep(0.,1.,(1.-abs(UV.y-0.5)*2.));
+
+	COLOR = vec4(color.rgb, final * 1.);
 }

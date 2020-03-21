@@ -131,17 +131,17 @@ void fragment()
     vec4 ret=textureLod(SCREEN_TEXTURE, SCREEN_UV, LOD);
     
     // use BigWIngs layer as base drops
-    ret=layerBigWIngs(SCREEN_UV, SCREEN_UV * 2.2, ret, TIME * 1.0,SCREEN_TEXTURE);
+    ret=layerBigWIngs(SCREEN_UV, SCREEN_UV * 2.2, ret, TIME * 3.15,SCREEN_TEXTURE);
     // add Eliemichel layers with fbm (see https://www.shadertoy.com/view/lsl3RH) as detailed drops.
     const mat2 m = mat2(vec2(0.80,  0.60) ,vec2(-0.60,  0.80 ));
     vec2 p = SCREEN_UV;
     
-    ret = layerEliemichel(SCREEN_UV, p + vec2(0, TIME * 0.01), ret, TIME * 0.25,SCREEN_TEXTURE);
+    ret = layerEliemichel(SCREEN_UV, p + vec2(0, TIME * 0.01), ret, TIME * 0.95,SCREEN_TEXTURE);
     p = m * p * 2.02;
     
-    ret = layerEliemichel(SCREEN_UV, p, ret, TIME * 0.125,SCREEN_TEXTURE);
+    ret = layerEliemichel(SCREEN_UV, p, ret, TIME * 1.58,SCREEN_TEXTURE);
     p = m * p * 1.253;
     
-	ret= layerEliemichel(SCREEN_UV, p, ret, TIME * 0.125,SCREEN_TEXTURE);
+	ret= layerEliemichel(SCREEN_UV, p, ret, TIME * 2.21,SCREEN_TEXTURE);
     COLOR = ret;
 }
