@@ -1,17 +1,17 @@
 extends Node
 
 enum Tendency {
-	NORMAL, # 无政策
-	RADICAL, # 激进政策
-	NEUTRAL, # 中性政策
-	CONSERVATIVE, # 保守政策
+	TAOISM, # 道家
+	MOHIST, # 墨家
+	CONFUCIANISM, # 儒家
+	LEGALIST, # 法家
 }
 
 enum SlotShow {
-	NORMAL, # 无政策在格子中
-	RADICAL, # 激进政策
-	NEUTRAL, # 中性政策
-	CONSERVATIVE, # 保守政策
+	TAOISM, # 道家
+	MOHIST, # 墨家
+	CONFUCIANISM, # 儒家
+	LEGALIST, # 法家
 	NOSHOW, # 不显示
 }
 

@@ -5,12 +5,14 @@ extends Button
 var tendency:int 
 var tree_id:int # 在树上的显示序号
 var slot_group # 旗下的按钮组
+onready var left = get_node("Left_Right/Left")
+onready var right = get_node("Left_Right/Right")
 
 var styles_box = {
-	PolicyConstant.SlotShow.NORMAL:preload("res://images/styleboxflat/normal_round.tres"),
-	PolicyConstant.SlotShow.RADICAL:preload("res://images/styleboxflat/radical_round.tres"),
-	PolicyConstant.SlotShow.NEUTRAL:preload("res://images/styleboxflat/neutral_round.tres"),
-	PolicyConstant.SlotShow.CONSERVATIVE:preload("res://images/styleboxflat/conservative_round.tres"),
+	PolicyConstant.SlotShow.TAOISM:preload("res://images/styleboxflat/normal_round.tres"),
+	PolicyConstant.SlotShow.MOHIST:preload("res://images/styleboxflat/radical_round.tres"),
+	PolicyConstant.SlotShow.CONFUCIANISM:preload("res://images/styleboxflat/neutral_round.tres"),
+	PolicyConstant.SlotShow.LEGALIST:preload("res://images/styleboxflat/conservative_round.tres"),
 	PolicyConstant.SlotShow.NOSHOW:preload("res://images/styleboxflat/noshow_round.tres")
 }
 
@@ -19,7 +21,7 @@ func _init():
 	pass
 
 func _ready():
-	
+	update_styles()
 	pass
 	
 func update_styles():
@@ -41,12 +43,26 @@ func update_styles():
 	add_stylebox_override("focus",result_box)
 	add_stylebox_override("disabled",result_box)
 	add_stylebox_override("normal",result_box)
+	
+	if slot_group.get_buttons().size()<=1:
+		left.visible=false
+		right.visible=false
+	else:
+		left.visible=true
+		right.visible=true
 
 func add_policy(policy_node):
+	var parent = policy_node.get_parent()
+	if parent:
+		parent.remove_child(policy_node)
 	get_node("PolicyContainer").add_child(policy_node)
 	policy_node.name = "Policy%s"%policy_node.tendency
 	policy_node.set_button_group(slot_group)
 	
+func clear_policy():
+	for policy in slot_group.get_buttons():
+		get_node("PolicyContainer").remove_child(policy)
+
 func show_policy(number):
 	tendency = number
 	for policy in slot_group.get_buttons():

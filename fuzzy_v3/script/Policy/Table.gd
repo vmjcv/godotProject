@@ -98,22 +98,22 @@ func get_tree_count():
 func _create_warehouse() -> Dictionary: 
 	var warehouse={
 				warehouse_key.TENDENCY:{
-					PolicyConstant.Tendency.NORMAL:{
+					PolicyConstant.Tendency.TAOISM:{
 						warehouse_key.NUMBER:{},
 						warehouse_key.TREE:{
 						},
 					},
-					PolicyConstant.Tendency.RADICAL:{
+					PolicyConstant.Tendency.MOHIST:{
 						warehouse_key.NUMBER:{},
 						warehouse_key.TREE:{
 						},
 					},
-					PolicyConstant.Tendency.NEUTRAL:{
+					PolicyConstant.Tendency.CONFUCIANISM:{
 						warehouse_key.NUMBER:{},
 						warehouse_key.TREE:{
 						},
 					},
-					PolicyConstant.Tendency.CONSERVATIVE:{
+					PolicyConstant.Tendency.LEGALIST:{
 						warehouse_key.NUMBER:{},
 						warehouse_key.TREE:{
 						},

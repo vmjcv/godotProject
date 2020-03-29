@@ -7,16 +7,17 @@ extends Button
 signal up # 弹起这个按钮的时候发出信号，目的是传递参数
 
 var styles_box = {
-	PolicyConstant.Tendency.NORMAL:preload("res://images/styleboxflat/normal_round.tres"),
-	PolicyConstant.Tendency.RADICAL:preload("res://images/styleboxflat/radical_round.tres"),
-	PolicyConstant.Tendency.NEUTRAL:preload("res://images/styleboxflat/neutral_round.tres"),
-	PolicyConstant.Tendency.CONSERVATIVE:preload("res://images/styleboxflat/conservative_round.tres")
+	PolicyConstant.Tendency.TAOISM:preload("res://images/styleboxflat/normal_round.tres"),
+	PolicyConstant.Tendency.MOHIST:preload("res://images/styleboxflat/radical_round.tres"),
+	PolicyConstant.Tendency.CONFUCIANISM:preload("res://images/styleboxflat/neutral_round.tres"),
+	PolicyConstant.Tendency.LEGALIST:preload("res://images/styleboxflat/conservative_round.tres")
 }
 
 var tree_id:int # 树上的显示序号，即编注是第几个格子
 var tendency:int # 政策倾向：无，激进，中性，保守 （0，1，2，3）
 var number:int # 编号
 var description:String # 政策描述
+var title:String # 政策标题
 var UI_path:String # ui地址
 var base_bonus:Array # 基础加成值，格式,[[1,5%,0],[2,0%,30]],第一位为加成类别编号分为百分比加成和数值加成，首先计算数值加成，再计算百分比加成
 var special_bonus:Array # 特殊加成值，根据加成buff数值索引加成信息，调用加成信息函数。
@@ -54,7 +55,7 @@ func add_progress(value) -> Array:
 	if remaining >= 0:
 		now_RD_progress = all_progress
 		start = false
-		finish = true
+		set_finish(true)
 		return [true,remaining]
 	else:
 		now_RD_progress = now_RD_progress + value
@@ -116,6 +117,7 @@ func _load_table(load_dict):
 	tendency = load_dict.tendency
 	number = load_dict.number
 	description = load_dict.description
+	title = load_dict.title
 	UI_path = load_dict.UI_path
 	base_bonus = load_dict.base_bonus
 	special_bonus = load_dict.special_bonus

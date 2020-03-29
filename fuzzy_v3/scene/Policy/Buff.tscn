@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/MFManYu_Noncommercial-Regular.tres" type="DynamicFont" id=1]
+
+[node name="Buff" type="HBoxContainer"]
+margin_right = 506.0
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuffName" type="Label" parent="."]
+margin_left = 118.0
+margin_right = 133.0
+margin_bottom = 17.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "111"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuffNumber" type="Label" parent="."]
+margin_left = 366.0
+margin_right = 394.0
+margin_bottom = 17.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "2222"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

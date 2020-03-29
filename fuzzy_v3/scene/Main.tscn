@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://shader/glitch.shader" type="Shader" id=1]
 [ext_resource path="res://shader/mist.shader" type="Shader" id=2]
@@ -13,22 +13,37 @@
 [ext_resource path="res://shader/title_breath.shader" type="Shader" id=11]
 [ext_resource path="res://images/main/title.png" type="Texture" id=12]
 [ext_resource path="res://shader/new_rain.shader" type="Shader" id=13]
-[ext_resource path="res://scene/icon4.gd" type="Script" id=14]
 [ext_resource path="res://shaderTexture/mist.jpg" type="Texture" id=15]
 [ext_resource path="res://images/main/bg.png" type="Texture" id=16]
 [ext_resource path="res://images/main/up.png" type="Texture" id=17]
+[ext_resource path="res://shader/fog1.shader" type="Shader" id=18]
+[ext_resource path="res://images/main/fog.png" type="Texture" id=19]
+[ext_resource path="res://audio/rain.ogg" type="AudioStream" id=20]
+[ext_resource path="res://shader/tornado.shader" type="Shader" id=21]
+[ext_resource path="res://shader/aurora.shader" type="Shader" id=22]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
-shader_param/color = Color( 0.784314, 0.74902, 0.74902, 0.203922 )
-shader_param/NoiseTex = ExtResource( 15 )
+shader = ExtResource( 18 )
 
 [sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 21 )
+shader_param/tornado_color = Color( 0.054902, 0.054902, 0.0627451, 1 )
+shader_param/NoiseTex = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 22 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.509804, 0.486275, 0.486275, 0 )
+shader_param/NoiseTex = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 5 )
 shader_param/color = Color( 0.682353, 0.682353, 0.682353, 1 )
 shader_param/OCTAVES = 4
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 1 )
 shader_param/dispAmt = 0.001
 shader_param/abberationAmtX = 0.005
@@ -40,17 +55,17 @@ shader_param/maxAlpha = 0.7
 shader_param/displace = ExtResource( 8 )
 shader_param/my_texture = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 9 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 11 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 6 )
 shader_param/my_texture = ExtResource( 8 )
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 13 )
 shader_param/mouse_position = null
 
@@ -68,18 +83,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon2" type="Sprite" parent="."]
+[node name="fog1" type="TextureRect" parent="."]
 visible = false
 material = SubResource( 1 )
-position = Vector2( 504.777, 427.552 )
-scale = Vector2( 11.2835, 2.02061 )
-texture = ExtResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 19 )
+expand = true
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="fog4" type="TextureRect" parent="."]
+visible = false
 material = SubResource( 2 )
+anchor_left = 0.116
+anchor_right = 0.843
+anchor_bottom = 0.842
+margin_left = 0.215981
+margin_top = 1.0
+margin_right = -0.232178
+margin_bottom = -0.200043
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="aurora" type="TextureRect" parent="."]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
+[node name="fog2" type="Sprite" parent="."]
+visible = false
+material = SubResource( 4 )
+position = Vector2( 492, 413.514 )
+scale = Vector2( 16.875, 2.02061 )
+texture = ExtResource( 3 )
+
+[node name="fog3" type="TextureRect" parent="."]
+material = SubResource( 5 )
 anchor_top = 0.778
 anchor_right = 0.999
 anchor_bottom = 0.778
@@ -90,6 +137,7 @@ margin_bottom = 53.7137
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -101,8 +149,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Container"]
-material = SubResource( 3 )
+[node name="house" type="TextureRect" parent="Container"]
+material = SubResource( 6 )
 anchor_left = -0.001
 anchor_top = 0.429
 anchor_right = 0.991
@@ -119,8 +167,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon3" type="TextureRect" parent="Container"]
-material = SubResource( 4 )
+[node name="start_bg" type="TextureRect" parent="Container"]
+material = SubResource( 7 )
 anchor_left = 0.241
 anchor_top = 0.749
 anchor_right = 0.757
@@ -133,11 +181,12 @@ texture = ExtResource( 10 )
 expand = true
 stretch_mode = 7
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="tile_name" type="TextureRect" parent="Container/icon3"]
-material = SubResource( 5 )
+[node name="start" type="TextureRect" parent="Container/start_bg"]
+material = SubResource( 8 )
 anchor_left = 0.312
 anchor_top = 0.391
 anchor_right = 0.69
@@ -150,6 +199,7 @@ texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -167,8 +217,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect3" type="Sprite" parent="Container/Control2"]
-material = SubResource( 6 )
+[node name="title" type="Sprite" parent="Container/Control2"]
+material = SubResource( 9 )
 position = Vector2( 16.123, 154.588 )
 scale = Vector2( 0.471673, 0.599432 )
 texture = ExtResource( 12 )
@@ -176,13 +226,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="icon4" type="TextureRect" parent="Container"]
-material = SubResource( 7 )
+[node name="rain" type="TextureRect" parent="Container"]
+material = SubResource( 10 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
-script = ExtResource( 14 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -200,3 +249,7 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+autoplay = true

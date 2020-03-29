@@ -126,10 +126,10 @@ void fragment()
     vec3 col = textureLod(SCREEN_TEXTURE, new_uv+n, focus).rgb;
     
     
-
+	/*
     t = (T+3.)*.5;										// make time sync with first lightnoing
     float colFade = sin(t*.2)*.5+.5+story;
-    col *= mix(vec3(1.), vec3(.8, .9, 1.3), colFade);	// subtle color shift
+    //col *= mix(vec3(1.), vec3(.8, .9, 1.3), colFade);	// subtle color shift
     float fade = smoothstep(0., 10., T);							// fade in at the start
     float lightning = sin(t*sin(t*10.));				// lighting flicker
     lightning *= pow(max(0., sin(t+sin(t))), 10.);		// lightning flash
@@ -138,6 +138,6 @@ void fragment()
     											
 
     col *= fade;										// composite start and end fade
-
+	*/
     COLOR = vec4(col, 1.0);
 }
