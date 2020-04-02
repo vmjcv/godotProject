@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="MeshInstance" type="MeshInstance"]
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+width = 4.0
+height = 0.4
+depth = 0.5
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+width = 4.0
+height = 0.4
+depth = 0.5
