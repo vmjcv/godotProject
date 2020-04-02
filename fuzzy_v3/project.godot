@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "MagicCubeConstant",
+"language": "GDScript",
+"path": "res://script/Game/TicTacToe_MagicCube/Constant.gd"
+}, {
 "base": "Button",
 "class": "PolicyData",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://script/Technology/Table.gd"
 } ]
 _global_script_class_icons={
+"MagicCubeConstant": "",
 "PolicyData": "",
 "PolicyTable": "",
 "TechnologyData": "",

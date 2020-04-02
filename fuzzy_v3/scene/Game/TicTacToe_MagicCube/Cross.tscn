@@ -3,15 +3,16 @@
 [node name="MeshInstance" type="MeshInstance"]
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
-width = 4.0
+width = 1.5
 height = 0.4
-depth = 0.5
+depth = 0.3
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
-width = 4.0
+width = 1.5
 height = 0.4
-depth = 0.5
+depth = 0.3
