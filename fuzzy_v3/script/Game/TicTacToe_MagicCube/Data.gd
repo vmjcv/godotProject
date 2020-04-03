@@ -9,68 +9,79 @@ enum GridType {
 }
 
 class MagicGrid:
-	func _init(type,number,index):
-		self.type = type
-		self.number = number
-		self.index = index
+	var type 
+	var number 
+	var index
+	func _init(init_type,init_number,init_index):
+		type = init_type
+		number = init_number
+		index = init_index
 		
 class MagicPanel:
 	var grid_table
-	var x setget set_x,get_x#第一列
-	var y setget set_y,get_y#第二列
-	var z setget set_z,get_z#第三列
-	var i setget set_i,get_i#第一行
-	var j setget set_j,get_j#第二行
-	var k setget set_k,get_k#第三行
+	var cx setget set_cx,get_cx#第一列
+	var cy setget set_cy,get_cy#第二列
+	var cz setget set_cz,get_cz#第三列
+	var ri setget set_ri,get_ri#第一行
+	var rj setget set_rj,get_rj#第二行
+	var rk setget set_rk,get_rk#第三行
 	func _init(init_grid_table):
 		grid_table = init_grid_table
 	
-	func set_x(data:Vector3):
+	func set_cx(data:Vector3):
 		grid_table[0][0]=data.x
 		grid_table[1][0]=data.y
 		grid_table[2][0]=data.z
 	
-	func get_x():
+	func get_cx():
+		print(grid_table[0][0])
+		print(grid_table[1][0])
+		print(grid_table[2][0])
 		return Vector3(grid_table[0][0],grid_table[1][0],grid_table[2][0])
 
-	func set_y(data:Vector3):
+	func set_cy(data:Vector3):
 		grid_table[0][1]=data.x
 		grid_table[1][1]=data.y
 		grid_table[2][1]=data.z
 	
-	func get_y():
+	func get_cy():
+		print(grid_table[0][1],grid_table[1][1],grid_table[2][1])
 		return Vector3(grid_table[0][1],grid_table[1][1],grid_table[2][1])
 		
-	func set_z(data:Vector3):
+	func set_cz(data:Vector3):
 		grid_table[0][2]=data.x
 		grid_table[1][2]=data.y
 		grid_table[2][2]=data.z
 	
-	func get_z():
+	func get_cz():
+		print(grid_table[0][2],grid_table[1][2],grid_table[2][2])
 		return Vector3(grid_table[0][2],grid_table[1][2],grid_table[2][2])
 		
-	func set_i(data:Vector3):
+	func set_ri(data:Vector3):
 		grid_table[0][0]=data.x
 		grid_table[0][1]=data.y
 		grid_table[0][2]=data.z
 	
-	func get_i():
+	func get_ri():
+		print(grid_table[0][0],grid_table[0][1],grid_table[0][2])
 		return Vector3(grid_table[0][0],grid_table[0][1],grid_table[0][2])
 
-	func set_j(data:Vector3):
+	func set_rj(data:Vector3):
 		grid_table[1][0]=data.x
 		grid_table[1][1]=data.y
 		grid_table[1][2]=data.z
 	
-	func get_j():
+	func get_rj():
+		print(grid_table[1][0],grid_table[1][1],grid_table[1][2])
 		return Vector3(grid_table[1][0],grid_table[1][1],grid_table[1][2])
 		
-	func set_k(data:Vector3):
+	func set_rk(data:Vector3):
 		grid_table[2][0]=data.x
 		grid_table[2][1]=data.y
 		grid_table[2][2]=data.z
 	
-	func get_k():
+	func get_rk():
+		print(grid_table[2][0],grid_table[2][1],grid_table[2][2])
 		return Vector3(grid_table[2][0],grid_table[2][1],grid_table[2][2])
 	
 	func get_grid(column,row):
@@ -130,7 +141,7 @@ class MagicPanel:
 	func get_center():
 		return grid_table[1][1]
 
-class Cube:
+class MagicCube:
 	var up
 	var left
 	var down
@@ -172,103 +183,103 @@ class Cube:
 				
 
 	func turn_right_clockwise():
-		var first_z=down.z
-		down.z=behind.z
-		behind.z=up.x.zyx
-		up.x=front.z.zyx
-		front.z=first_z
+		var first_z=down.cz
+		down.cz=behind.cz
+		behind.cz=up.cx.zyx
+		up.cx=front.cz.zyx
+		front.cz=first_z
 		
 		right.turn_anit()
 		
 	func turn_right_anit():
-		var first_z=down.z
-		down.z=front.z
-		front.z=up.x.zyx
-		up.x=behind.z.zyx
-		behind.z=first_z
+		var first_z=down.cz
+		down.cz=front.cz
+		front.cz=up.cx.zyx
+		up.cx=behind.cz.zyx
+		behind.cz=first_z
 		
 		right.turn_clockwise()
 	
 	func turn_left_clockwise():
-		var first_x=down.x
-		down.x=front.x
-		front.x=up.z.zyx
-		up.z=behind.x.zyx
-		behind.x=first_x
+		var first_x=down.cx
+		down.cx=front.cx
+		front.cx=up.cz.zyx
+		up.cz=behind.cx.zyx
+		behind.cx=first_x
 		
 		left.turn_anit()
 		
 	func turn_left_anit():
-		var first_x=down.x
-		down.x=behind.x
-		behind.x=up.z.zyx
-		up.z=front.x.zyx
-		front.x=first_x
+		var first_x=down.cx
+		down.cx=behind.cx
+		behind.cx=up.cz.zyx
+		up.cz=front.cx.zyx
+		front.cx=first_x
 		
 		left.turn_clockwise()
 	
 	func turn_up_clockwise():
-		var first_k=front.k
-		front.k=right.z.zyx
-		right.z=behind.i
-		behind.i=left.x.zyx
-		left.x=first_k
+		var first_k=front.rk
+		front.rk=right.cz.zyx
+		right.cz=behind.ri
+		behind.ri=left.cx.zyx
+		left.cx=first_k
 		up.turn_anit()
 		
 	func turn_up_anit():
-		var first_k=front.k
-		front.k=left.x
-		left.x = behind.i.zyx
-		behind.i=right.z
-		right.z=first_k.zyx
+		var first_k=front.ck
+		front.ck=left.cx
+		left.cx = behind.ri.zyx
+		behind.ri=right.cz
+		right.cz=first_k.zyx
 		up.turn_clockwise()
 		
 	func turn_down_clockwise():
-		var first_i=front.i
-		front.i=left.z
-		left.z=behind.k.zyx
-		behind.k=right.x
-		right.x=first_i.zyx
+		var first_i=front.ri
+		front.ri=left.cz
+		left.cz=behind.rk.zyx
+		behind.rk=right.cx
+		right.cx=first_i.zyx
 		down.turn_anit()
 		
 	func turn_down_anit():
-		var first_i=front.i
-		front.i=right.x.zyx
-		right.x=behind.k
-		behind.k=left.z.zyx
-		left.z=first_i
+		var first_i=front.ri
+		front.ri=right.cx.zyx
+		right.cx=behind.rk
+		behind.rk=left.cz.zyx
+		left.cz=first_i
 		down.turn_clockwise()
 	
 	func turn_front_clockwise():
-		var first_k=down.k
-		down.k=right.k
-		right.k=up.k
-		up.k=left.k
-		left.k=first_k
+		var first_k=down.rk
+		down.rk=right.rk
+		right.rk=up.rk
+		up.rk=left.rk
+		left.rk=first_k
 		front.turn_anit()
 		
 	func turn_front_anit():
-		var first_k=down.k
-		down.k=left.k
-		left.k=up.k
-		up.k=right.k
-		right.k=first_k
+		var first_k=down.rk
+		down.rk=left.rk
+		left.rk=up.rk
+		up.rk=right.rk
+		right.rk=first_k
 		front.turn_clockwise()
 		
 	func turn_behind_clockwise():
-		var first_i=down.i
-		down.i=left.i
-		left.i=up.i
-		up.i=right.i
-		right.i=first_i
+		var first_i=down.ri
+		down.ri=left.ri
+		left.ri=up.ri
+		up.ri=right.ri
+		right.ri=first_i
 		behind.turn_anit()
 		
 	func turn_behind_anit():
-		var first_i=down.i
-		down.i=right.i
-		right.i=up.i
-		up.i=left.i
-		left.i=first_i
+		var first_i=down.ri
+		down.ri=right.ri
+		right.ri=up.ri
+		up.ri=left.ri
+		left.ri=first_i
 		behind.turn_clockwise()
 		
 	func turn_transverse_clockwise():

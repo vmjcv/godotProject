@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "FpsLabel",
+"language": "GDScript",
+"path": "res://FPSLabel.gd"
+}, {
 "base": "Reference",
 "class": "MagicCubeConstant",
 "language": "GDScript",
 "path": "res://script/Game/TicTacToe_MagicCube/Constant.gd"
+}, {
+"base": "Node",
+"class": "MagicCubeData",
+"language": "GDScript",
+"path": "res://script/Game/TicTacToe_MagicCube/Data.gd"
 }, {
 "base": "Button",
 "class": "PolicyData",
@@ -35,7 +45,9 @@ _global_script_classes=[ {
 "path": "res://script/Technology/Table.gd"
 } ]
 _global_script_class_icons={
+"FpsLabel": "",
 "MagicCubeConstant": "",
+"MagicCubeData": "",
 "PolicyData": "",
 "PolicyTable": "",
 "TechnologyData": "",
@@ -56,10 +68,16 @@ TechnologyConstant="*res://script/Technology/Constant.gd"
 TechnologyManage="*res://script/Technology/Manage.gd"
 PolicyConstant="*res://script/Policy/Constant.gd"
 PolicyManage="*res://script/Policy/Manage.gd"
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 
 [display]
 
 window/size/always_on_top=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "CodeSnippetPopup", "github-integration" )
 
 [rendering]
 
