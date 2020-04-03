@@ -1,16 +1,17 @@
 extends Spatial
 var box = preload("res://scene/Game/TicTacToe_MagicCube/Box.tscn")
 var data
+func _init():
+	init_data()
 
 func _ready():
-	init_data()
 	pass
 
 func init_data():
 	data = MagicCubeData.MagicCube.new()
 	_create_center()
 	_create_side()
-	_create_conrner()
+	#_create_conrner()
 
 func _create_center():
 	var centerbox = box.instance()
@@ -51,6 +52,9 @@ func _create_center():
 	
 func _create_side():
 	var centerbox = box.instance()
+	
+	print(data.down.cx)
+	
 	var centerbox_data = data.down.cx.y
 	centerbox.get_node("DownPanel").name="%s_%s_%s"%[centerbox_data.type, centerbox_data.number,centerbox_data.index]
 	centerbox_data = data.left.z.y
