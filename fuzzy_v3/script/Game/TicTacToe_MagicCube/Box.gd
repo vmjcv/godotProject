@@ -11,15 +11,16 @@ var cross = preload("res://scene/Game/TicTacToe_MagicCube/Cross.tscn")
 var ring = preload("res://scene/Game/TicTacToe_MagicCube/Ring.tscn")
 
 func _ready():
-	add_panel(MagicCubeConstant.Towards.UP,MagicCubeConstant.Data.RING)
-	add_panel(MagicCubeConstant.Towards.LEFT,MagicCubeConstant.Data.CROSS)
-	add_panel(MagicCubeConstant.Towards.DOWN,MagicCubeConstant.Data.RING)
-	add_panel(MagicCubeConstant.Towards.RIGHT,MagicCubeConstant.Data.CROSS)
-	add_panel(MagicCubeConstant.Towards.FRONT,MagicCubeConstant.Data.RING)
-	add_panel(MagicCubeConstant.Towards.BEHIND,MagicCubeConstant.Data.CROSS)
+	pass
+	#add_panel(MagicCubeConstant.Towards.UP,MagicCubeConstant.Data.RING)
+	#add_panel(MagicCubeConstant.Towards.LEFT,MagicCubeConstant.Data.CROSS)
+	#add_panel(MagicCubeConstant.Towards.DOWN,MagicCubeConstant.Data.RING)
+	#add_panel(MagicCubeConstant.Towards.RIGHT,MagicCubeConstant.Data.CROSS)
+	#add_panel(MagicCubeConstant.Towards.FRONT,MagicCubeConstant.Data.RING)
+	#add_panel(MagicCubeConstant.Towards.BEHIND,MagicCubeConstant.Data.CROSS)
 	
-	transform = transform.inverse()*(Transform(Basis(Vector3(0,0,1),TAU/8)))
-
+	#transform*=Transform(Basis(Vector3(0,0,1),TAU/16))
+	#transform.origin = transform.origin.rotated(Vector3(0,0,1),TAU/16)
 	#rotate(Vector3(0,0,1),PI/4)
 
 func add_panel(toward,data_type):
@@ -90,3 +91,52 @@ func set_behind(panel):
 	add_child(behind)
 	behind.rotation_degrees = Vector3(270,0,0)
 	
+func turn_right_clockwise():
+	transform*=Transform(Basis(Vector3(1,0,0),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(1,0,0),-TAU/4)
+	
+func turn_right_anit():
+	transform*=Transform(Basis(Vector3(1,0,0),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(1,0,0),TAU/4)
+
+func turn_left_clockwise():
+	transform*=Transform(Basis(Vector3(-1,0,0),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(-1,0,0),-TAU/4)
+	
+func turn_left_anit():
+	transform*=Transform(Basis(Vector3(-1,0,0),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(-1,0,0),TAU/4)
+
+func turn_up_clockwise():
+	transform*=Transform(Basis(Vector3(0,1,0),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),-TAU/4)
+	
+func turn_up_anit():
+	transform*=Transform(Basis(Vector3(0,1,0),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
+	
+func turn_down_clockwise():
+	transform*=Transform(Basis(Vector3(0,-1,0),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),-TAU/4)
+	
+func turn_down_anit():
+	transform*=Transform(Basis(Vector3(0,-1,0),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
+
+func turn_front_clockwise():
+	transform*=Transform(Basis(Vector3(0,0,1),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,0,1),-TAU/4)
+	
+func turn_front_anit():
+	transform*=Transform(Basis(Vector3(0,0,1),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,0,1),TAU/4)
+	
+func turn_behind_clockwise():
+	transform*=Transform(Basis(Vector3(0,0,-1),-TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,0,-1),-TAU/4)
+	
+func turn_behind_anit():
+	transform*=Transform(Basis(Vector3(0,0,-1),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,0,-1),TAU/4)
+	
+

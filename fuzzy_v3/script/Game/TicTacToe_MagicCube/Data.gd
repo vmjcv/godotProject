@@ -1,3 +1,5 @@
+class_name MagicCubeData
+
 extends Node
 
 enum GridType {
@@ -6,13 +8,13 @@ enum GridType {
 	CORNER,
 }
 
-class grid:
+class MagicGrid:
 	func _init(type,number,index):
 		self.type = type
 		self.number = number
 		self.index = index
 		
-class panel:
+class MagicPanel:
 	var grid_table
 	var x setget set_x,get_x#第一列
 	var y setget set_y,get_y#第二列
@@ -116,8 +118,19 @@ class panel:
 		
 		set_by_clock(6,last)
 		set_by_clock(7,last_second)
+		
+	func get_grid_by_type_number(type,number):
+		for i in range(3):
+			for j in range(3):
+				var grid = grid_table[i][j]
+				if grid.type==type and grid.number == number:
+					return [i,j]
+		return null
+	
+	func get_center():
+		return grid_table[1][1]
 
-class cube:
+class Cube:
 	var up
 	var left
 	var down
@@ -125,36 +138,36 @@ class cube:
 	var front
 	var behind
 	func _init():
-		up = panel.new([
-				[grid.new(GridType.CORNER,0,0),grid.new(GridType.SIDE,0,0),grid.new(GridType.CORNER,1,0)],
-				[grid.new(GridType.SIDE,4,0),grid.new(GridType.CENTER,0,0),grid.new(GridType.SIDE,5,0)],
-				[grid.new(GridType.CORNER,4,0),grid.new(GridType.SIDE,8,0),grid.new(GridType.CORNER,5,0)],
+		up = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,0,0),MagicGrid.new(GridType.SIDE,0,0),MagicGrid.new(GridType.CORNER,1,0)],
+				[MagicGrid.new(GridType.SIDE,4,0),MagicGrid.new(GridType.CENTER,0,0),MagicGrid.new(GridType.SIDE,5,0)],
+				[MagicGrid.new(GridType.CORNER,4,0),MagicGrid.new(GridType.SIDE,8,0),MagicGrid.new(GridType.CORNER,5,0)],
 				])
 		
-		left = panel.new([
-				[grid.new(GridType.CORNER,1,2),grid.new(GridType.SIDE,1,0),grid.new(GridType.CORNER,2,2)],
-				[grid.new(GridType.SIDE,5,1),grid.new(GridType.CENTER,1,0),grid.new(GridType.SIDE,6,1)],
-				[grid.new(GridType.CORNER,5,2),grid.new(GridType.SIDE,9,0),grid.new(GridType.CORNER,6,2)],
+		left = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,1,2),MagicGrid.new(GridType.SIDE,1,0),MagicGrid.new(GridType.CORNER,2,2)],
+				[MagicGrid.new(GridType.SIDE,5,1),MagicGrid.new(GridType.CENTER,1,0),MagicGrid.new(GridType.SIDE,6,1)],
+				[MagicGrid.new(GridType.CORNER,5,2),MagicGrid.new(GridType.SIDE,9,0),MagicGrid.new(GridType.CORNER,6,2)],
 				])
-		down = panel.new([
-				[grid.new(GridType.CORNER,2,0),grid.new(GridType.SIDE,2,0),grid.new(GridType.CORNER,3,0)],
-				[grid.new(GridType.SIDE,6,0),grid.new(GridType.CENTER,2,0),grid.new(GridType.SIDE,7,0)],
-				[grid.new(GridType.CORNER,6,0),grid.new(GridType.SIDE,10,0),grid.new(GridType.CORNER,7,0)],
+		down = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,2,0),MagicGrid.new(GridType.SIDE,2,0),MagicGrid.new(GridType.CORNER,3,0)],
+				[MagicGrid.new(GridType.SIDE,6,0),MagicGrid.new(GridType.CENTER,2,0),MagicGrid.new(GridType.SIDE,7,0)],
+				[MagicGrid.new(GridType.CORNER,6,0),MagicGrid.new(GridType.SIDE,10,0),MagicGrid.new(GridType.CORNER,7,0)],
 				])
-		right = panel.new([
-				[grid.new(GridType.CORNER,3,2),grid.new(GridType.SIDE,3,0),grid.new(GridType.CORNER,0,2)],
-				[grid.new(GridType.SIDE,7,1),grid.new(GridType.CENTER,3,0),grid.new(GridType.SIDE,4,1)],
-				[grid.new(GridType.CORNER,7,2),grid.new(GridType.SIDE,11,1),grid.new(GridType.CORNER,4,2)],
+		right = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,3,2),MagicGrid.new(GridType.SIDE,3,0),MagicGrid.new(GridType.CORNER,0,2)],
+				[MagicGrid.new(GridType.SIDE,7,1),MagicGrid.new(GridType.CENTER,3,0),MagicGrid.new(GridType.SIDE,4,1)],
+				[MagicGrid.new(GridType.CORNER,7,2),MagicGrid.new(GridType.SIDE,11,1),MagicGrid.new(GridType.CORNER,4,2)],
 				])
-		front = panel.new([
-				[grid.new(GridType.CORNER,6,1),grid.new(GridType.SIDE,10,1),grid.new(GridType.CORNER,7,1)],
-				[grid.new(GridType.SIDE,9,1),grid.new(GridType.CENTER,5,0),grid.new(GridType.SIDE,11,0)],
-				[grid.new(GridType.CORNER,5,1),grid.new(GridType.SIDE,8,1),grid.new(GridType.CORNER,4,1)],
+		front = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,6,1),MagicGrid.new(GridType.SIDE,10,1),MagicGrid.new(GridType.CORNER,7,1)],
+				[MagicGrid.new(GridType.SIDE,9,1),MagicGrid.new(GridType.CENTER,5,0),MagicGrid.new(GridType.SIDE,11,0)],
+				[MagicGrid.new(GridType.CORNER,5,1),MagicGrid.new(GridType.SIDE,8,1),MagicGrid.new(GridType.CORNER,4,1)],
 				])
-		behind = panel.new([
-				[grid.new(GridType.CORNER,1,1),grid.new(GridType.SIDE,0,1),grid.new(GridType.CORNER,0,1)],
-				[grid.new(GridType.SIDE,1,1),grid.new(GridType.CENTER,4,0),grid.new(GridType.SIDE,3,1)],
-				[grid.new(GridType.CORNER,2,1),grid.new(GridType.SIDE,2,1),grid.new(GridType.CORNER,3,1)],
+		behind = MagicPanel.new([
+				[MagicGrid.new(GridType.CORNER,1,1),MagicGrid.new(GridType.SIDE,0,1),MagicGrid.new(GridType.CORNER,0,1)],
+				[MagicGrid.new(GridType.SIDE,1,1),MagicGrid.new(GridType.CENTER,4,0),MagicGrid.new(GridType.SIDE,3,1)],
+				[MagicGrid.new(GridType.CORNER,2,1),MagicGrid.new(GridType.SIDE,2,1),MagicGrid.new(GridType.CORNER,3,1)],
 				])
 				
 
