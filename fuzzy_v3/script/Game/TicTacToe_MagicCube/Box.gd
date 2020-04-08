@@ -115,13 +115,28 @@ func turn_up_clockwise():
 func turn_up_anit():
 	transform*=Transform(Basis(Vector3(0,1,0),TAU/4))
 	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
+
+var tween_turn_down_clockwise_rotation = 0
+func tween_turn_down_clockwise(rotation):
+	var needrotation = 0
+	if tween_turn_down_clockwise_rotation:
+		needrotation = rotation - tween_turn_down_clockwise_rotation
+		tween_turn_down_clockwise_rotation = rotation
+	else:
+		needrotation = rotation
+		tween_turn_down_clockwise_rotation = rotation
+		
+		
+	transform*=Transform(Basis(Vector3(0,1,0),needrotation))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),needrotation)
 	
 func turn_down_clockwise():
-	tween.interpolate_property(self, "transform", transform, transform*Transform(Basis(Vector3(0,-1,0),-TAU/4)), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.interpolate_property(transform, "origin", transform.origin, transform.origin.rotated(Vector3(0,-1,0),-TAU/4), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_method(self, "tween_turn_down_clockwise", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
 	"""
-	transform*=Transform(Basis(Vector3(0,-1,0),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,-1,0),-TAU/4)
+	transform*=Transform(Basis(Vector3(0,1,0),TAU/4))
+	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
 	"""
 func turn_down_anit():
 	transform*=Transform(Basis(Vector3(0,-1,0),TAU/4))
