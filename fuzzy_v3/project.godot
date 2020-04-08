@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://FPSLabel.gd"
 }, {
 "base": "Reference",
+"class": "InputHelper",
+"language": "GDScript",
+"path": "res://script/Helper/InputHelper.gd"
+}, {
+"base": "Reference",
 "class": "MagicCubeConstant",
 "language": "GDScript",
 "path": "res://script/Game/TicTacToe_MagicCube/Constant.gd"
@@ -46,6 +51,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "FpsLabel": "",
+"InputHelper": "",
 "MagicCubeConstant": "",
 "MagicCubeData": "",
 "PolicyData": "",

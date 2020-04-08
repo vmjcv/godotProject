@@ -17,6 +17,31 @@ class MagicGrid:
 		number = init_number
 		index = init_index
 		
+	func equal_string(string):
+		var args = string.split("_")
+		return int(args[0])==type and int(args[1])==number and int(args[2])==index 
+
+class Vector3Grid:
+	var x
+	var y 
+	var z
+	
+	var xyz setget ,get_xyz
+	var zyx setget ,get_zyx
+	func _init(init_x,init_y,init_z):
+		x=init_x
+		y=init_y
+		z=init_z
+	
+	func get_xyz():
+		return Vector3Grid.new(x,y,z)
+	func get_zyx():
+		return Vector3Grid.new(z,y,x)	
+		
+	func equal_string_array(string_array):
+		return (x.equal_string(string_array[0]) and y.equal_string(string_array[1]) and z.equal_string(string_array[2]))
+
+	
 class MagicPanel:
 	var grid_table
 	var cx setget set_cx,get_cx#第一列
@@ -25,28 +50,44 @@ class MagicPanel:
 	var ri setget set_ri,get_ri#第一行
 	var rj setget set_rj,get_rj#第二行
 	var rk setget set_rk,get_rk#第三行
+	
+	var start = 0
+	var current = 0 
+	var end = 9
+	var increment = 1
+
+	func should_continue():
+		return (current < end)
+
+	func _iter_init(arg):
+		current = start
+		return should_continue()
+
+	func _iter_next(arg):
+		current += increment
+		return should_continue()
+
+	func _iter_get(arg):
+		return grid_table[current%3][floor(current/3)]
+	
 	func _init(init_grid_table):
 		grid_table = init_grid_table
 	
-	func set_cx(data:Vector3):
+	func set_cx(data):
 		grid_table[0][0]=data.x
 		grid_table[1][0]=data.y
 		grid_table[2][0]=data.z
 	
 	func get_cx():
-		print(grid_table[0][0])
-		print(grid_table[1][0])
-		print(grid_table[2][0])
-		return Vector3(grid_table[0][0],grid_table[1][0],grid_table[2][0])
+		return Vector3Grid.new(grid_table[0][0],grid_table[1][0],grid_table[2][0])
 
-	func set_cy(data:Vector3):
+	func set_cy(data):
 		grid_table[0][1]=data.x
 		grid_table[1][1]=data.y
 		grid_table[2][1]=data.z
 	
 	func get_cy():
-		print(grid_table[0][1],grid_table[1][1],grid_table[2][1])
-		return Vector3(grid_table[0][1],grid_table[1][1],grid_table[2][1])
+		return Vector3Grid.new(grid_table[0][1],grid_table[1][1],grid_table[2][1])
 		
 	func set_cz(data:Vector3):
 		grid_table[0][2]=data.x
@@ -54,35 +95,31 @@ class MagicPanel:
 		grid_table[2][2]=data.z
 	
 	func get_cz():
-		print(grid_table[0][2],grid_table[1][2],grid_table[2][2])
-		return Vector3(grid_table[0][2],grid_table[1][2],grid_table[2][2])
+		return Vector3Grid.new(grid_table[0][2],grid_table[1][2],grid_table[2][2])
 		
-	func set_ri(data:Vector3):
+	func set_ri(data):
 		grid_table[0][0]=data.x
 		grid_table[0][1]=data.y
 		grid_table[0][2]=data.z
 	
 	func get_ri():
-		print(grid_table[0][0],grid_table[0][1],grid_table[0][2])
-		return Vector3(grid_table[0][0],grid_table[0][1],grid_table[0][2])
+		return Vector3Grid.new(grid_table[0][0],grid_table[0][1],grid_table[0][2])
 
-	func set_rj(data:Vector3):
+	func set_rj(data):
 		grid_table[1][0]=data.x
 		grid_table[1][1]=data.y
 		grid_table[1][2]=data.z
 	
 	func get_rj():
-		print(grid_table[1][0],grid_table[1][1],grid_table[1][2])
-		return Vector3(grid_table[1][0],grid_table[1][1],grid_table[1][2])
+		return Vector3Grid.new(grid_table[1][0],grid_table[1][1],grid_table[1][2])
 		
-	func set_rk(data:Vector3):
+	func set_rk(data):
 		grid_table[2][0]=data.x
 		grid_table[2][1]=data.y
 		grid_table[2][2]=data.z
 	
 	func get_rk():
-		print(grid_table[2][0],grid_table[2][1],grid_table[2][2])
-		return Vector3(grid_table[2][0],grid_table[2][1],grid_table[2][2])
+		return Vector3Grid.new(grid_table[2][0],grid_table[2][1],grid_table[2][2])
 	
 	func get_grid(column,row):
 		return grid_table[row][column]
@@ -110,7 +147,7 @@ class MagicPanel:
 		elif number ==7:
 			return set_grid(0,1,value)
 	
-	func turn_clockwise():
+	func turn_anit():
 		var last = get_by_clock(7)
 		var last_second = get_by_clock(6)
 		
@@ -120,7 +157,7 @@ class MagicPanel:
 		set_by_clock(1,last)
 		set_by_clock(0,last_second)
 
-	func turn_anit():
+	func turn_clockwise():
 		var last = get_by_clock(0)
 		var last_second = get_by_clock(1)
 		
@@ -140,6 +177,48 @@ class MagicPanel:
 	
 	func get_center():
 		return grid_table[1][1]
+	
+	func have(type,number,index):
+		for i in range(3):
+			for j in range(3):
+				var grid = grid_table[i][j]
+				if grid.type==int(type) and grid.number == int(number) and grid.index == int(index):
+					return true
+		return false
+
+	func equal_panel_anit(array):
+			var begin_i 
+			for i in range(8):
+				if get_by_clock(i).equal_string(array[0]):
+					begin_i = i
+					break
+			if not begin_i:
+				return false
+			var found = true
+			for i in range(8):
+				var j = (i+begin_i)%8
+				if not get_by_clock(j).equal_string(array[i]):
+					found = false
+					break
+			return found
+
+	func equal_panel_clockwise(array):
+		var begin_i
+		for i in range(8):
+			if get_by_clock(i).equal_string(array[7]):
+				begin_i = i
+				break
+		if not begin_i:
+			return false
+		var found = true
+		for i in range(8):
+			var j = (begin_i-i)%8
+			if not get_by_clock(j).equal_string(array[i]):
+				found = false
+				break
+		return found
+
+
 
 class MagicCube:
 	var up
@@ -150,35 +229,35 @@ class MagicCube:
 	var behind
 	func _init():
 		up = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,0,0),MagicGrid.new(GridType.SIDE,0,0),MagicGrid.new(GridType.CORNER,1,0)],
-				[MagicGrid.new(GridType.SIDE,4,0),MagicGrid.new(GridType.CENTER,0,0),MagicGrid.new(GridType.SIDE,5,0)],
-				[MagicGrid.new(GridType.CORNER,4,0),MagicGrid.new(GridType.SIDE,8,0),MagicGrid.new(GridType.CORNER,5,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,0,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,0,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,1,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,4,0),MagicGrid.new(MagicCubeConstant.GridType.CENTER,0,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,5,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,4,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,8,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,5,0)],
 				])
 		
 		left = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,1,2),MagicGrid.new(GridType.SIDE,1,0),MagicGrid.new(GridType.CORNER,2,2)],
-				[MagicGrid.new(GridType.SIDE,5,1),MagicGrid.new(GridType.CENTER,1,0),MagicGrid.new(GridType.SIDE,6,1)],
-				[MagicGrid.new(GridType.CORNER,5,2),MagicGrid.new(GridType.SIDE,9,0),MagicGrid.new(GridType.CORNER,6,2)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,1,2),MagicGrid.new(MagicCubeConstant.GridType.SIDE,1,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,2,2)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,5,1),MagicGrid.new(MagicCubeConstant.GridType.CENTER,1,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,6,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,5,2),MagicGrid.new(MagicCubeConstant.GridType.SIDE,9,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,6,2)],
 				])
 		down = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,2,0),MagicGrid.new(GridType.SIDE,2,0),MagicGrid.new(GridType.CORNER,3,0)],
-				[MagicGrid.new(GridType.SIDE,6,0),MagicGrid.new(GridType.CENTER,2,0),MagicGrid.new(GridType.SIDE,7,0)],
-				[MagicGrid.new(GridType.CORNER,6,0),MagicGrid.new(GridType.SIDE,10,0),MagicGrid.new(GridType.CORNER,7,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,2,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,2,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,3,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,6,0),MagicGrid.new(MagicCubeConstant.GridType.CENTER,2,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,7,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,6,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,10,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,7,0)],
 				])
 		right = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,3,2),MagicGrid.new(GridType.SIDE,3,0),MagicGrid.new(GridType.CORNER,0,2)],
-				[MagicGrid.new(GridType.SIDE,7,1),MagicGrid.new(GridType.CENTER,3,0),MagicGrid.new(GridType.SIDE,4,1)],
-				[MagicGrid.new(GridType.CORNER,7,2),MagicGrid.new(GridType.SIDE,11,1),MagicGrid.new(GridType.CORNER,4,2)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,3,2),MagicGrid.new(MagicCubeConstant.GridType.SIDE,3,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,0,2)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,7,1),MagicGrid.new(MagicCubeConstant.GridType.CENTER,3,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,4,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,7,2),MagicGrid.new(MagicCubeConstant.GridType.SIDE,11,1),MagicGrid.new(MagicCubeConstant.GridType.CORNER,4,2)],
 				])
 		front = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,6,1),MagicGrid.new(GridType.SIDE,10,1),MagicGrid.new(GridType.CORNER,7,1)],
-				[MagicGrid.new(GridType.SIDE,9,1),MagicGrid.new(GridType.CENTER,5,0),MagicGrid.new(GridType.SIDE,11,0)],
-				[MagicGrid.new(GridType.CORNER,5,1),MagicGrid.new(GridType.SIDE,8,1),MagicGrid.new(GridType.CORNER,4,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,6,1),MagicGrid.new(MagicCubeConstant.GridType.SIDE,10,1),MagicGrid.new(MagicCubeConstant.GridType.CORNER,7,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,9,1),MagicGrid.new(MagicCubeConstant.GridType.CENTER,5,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,11,0)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,5,1),MagicGrid.new(MagicCubeConstant.GridType.SIDE,8,1),MagicGrid.new(MagicCubeConstant.GridType.CORNER,4,1)],
 				])
 		behind = MagicPanel.new([
-				[MagicGrid.new(GridType.CORNER,1,1),MagicGrid.new(GridType.SIDE,0,1),MagicGrid.new(GridType.CORNER,0,1)],
-				[MagicGrid.new(GridType.SIDE,1,1),MagicGrid.new(GridType.CENTER,4,0),MagicGrid.new(GridType.SIDE,3,1)],
-				[MagicGrid.new(GridType.CORNER,2,1),MagicGrid.new(GridType.SIDE,2,1),MagicGrid.new(GridType.CORNER,3,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,1,1),MagicGrid.new(MagicCubeConstant.GridType.SIDE,0,1),MagicGrid.new(MagicCubeConstant.GridType.CORNER,0,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.SIDE,1,1),MagicGrid.new(MagicCubeConstant.GridType.CENTER,4,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,3,1)],
+				[MagicGrid.new(MagicCubeConstant.GridType.CORNER,2,1),MagicGrid.new(MagicCubeConstant.GridType.SIDE,2,1),MagicGrid.new(MagicCubeConstant.GridType.CORNER,3,1)],
 				])
 				
 
@@ -312,3 +391,13 @@ class MagicCube:
 		turn_down_clockwise()
 		turn_up_anit()
 	
+	func get_in_panel(grid_array):
+		for one_panel in [up,left,down,right,front,behind]:
+			var in_panel=true
+			for grid in grid_array:
+				var args = grid.split("_")
+				if not one_panel.have(args[0],args[1],args[2]):
+					in_panel=false
+			if in_panel:
+				return one_panel
+		return false

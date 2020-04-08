@@ -8,94 +8,126 @@ albedo_color = Color( 0.992157, 0.862745, 0.168627, 1 )
 [sub_resource type="CubeMesh" id=2]
 material = SubResource( 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.823529, 0.878431, 0.313726, 1 )
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.9, 0.2, 0.9 )
 
 [node name="MeshInstance" type="MeshInstance"]
 mesh = SubResource( 2 )
 material/0 = null
 script = ExtResource( 1 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0.95 )
-material_override = SubResource( 3 )
+[node name="FrontPanel" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.95 )
 
-[node name="CSGBox" type="CSGBox" parent="FrontPanel"]
+[node name="FrontPanel" type="CSGCombiner" parent="FrontPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="FrontPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="FrontPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
 
-[node name="BehindPanel" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -0.95 )
-material_override = SubResource( 3 )
+[node name="CollisionShape" type="CollisionShape" parent="FrontPanel"]
+shape = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="BehindPanel"]
+[node name="BehindPanel" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.95 )
+
+[node name="FrontPanel" type="CSGCombiner" parent="BehindPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="BehindPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="BehindPanel"]
+[node name="CSGBox2" type="CSGBox" parent="BehindPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
 
-[node name="LeftPanel" type="CSGCombiner" parent="."]
-transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, -0.95, 0, 0 )
-material_override = SubResource( 3 )
+[node name="CollisionShape" type="CollisionShape" parent="BehindPanel"]
+shape = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="LeftPanel"]
+[node name="LeftPanel" type="Area" parent="."]
+transform = Transform( -1.62921e-07, -1, 0, -1.62921e-07, 2.65431e-14, -1, 1, -1.62921e-07, -1.62921e-07, -0.95, 0, 0 )
+
+[node name="FrontPanel" type="CSGCombiner" parent="LeftPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="LeftPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="LeftPanel"]
+[node name="CSGBox2" type="CSGBox" parent="LeftPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
 
-[node name="RightPanel" type="CSGCombiner" parent="."]
-transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0.95, 0, 0 )
-material_override = SubResource( 3 )
+[node name="CollisionShape" type="CollisionShape" parent="LeftPanel"]
+shape = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="RightPanel"]
+[node name="RightPanel" type="Area" parent="."]
+transform = Transform( -1.62921e-07, -1, 0, -1.62921e-07, 2.65431e-14, -1, 1, -1.62921e-07, -1.62921e-07, 0.95, 0, 0 )
+
+[node name="FrontPanel" type="CSGCombiner" parent="RightPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="RightPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="RightPanel"]
+[node name="CSGBox2" type="CSGBox" parent="RightPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
 
-[node name="UpPanel" type="CSGCombiner" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="RightPanel"]
+shape = SubResource( 3 )
+
+[node name="UpPanel" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0 )
-material_override = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="UpPanel"]
+[node name="FrontPanel" type="CSGCombiner" parent="UpPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="UpPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="UpPanel"]
+[node name="CSGBox2" type="CSGBox" parent="UpPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
 
-[node name="DownPanel" type="CSGCombiner" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="UpPanel"]
+shape = SubResource( 3 )
+
+[node name="DownPanel" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0 )
-material_override = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="DownPanel"]
+[node name="FrontPanel" type="CSGCombiner" parent="DownPanel"]
+
+[node name="CSGBox" type="CSGBox" parent="DownPanel/FrontPanel"]
+operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="DownPanel"]
+[node name="CSGBox2" type="CSGBox" parent="DownPanel/FrontPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
 height = 0.77
 depth = 1.7
+
+[node name="CollisionShape" type="CollisionShape" parent="DownPanel"]
+shape = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]

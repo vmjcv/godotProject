@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://script/Game/TicTacToe_MagicCube/MagicCube.gd" type="Script" id=1]
+[ext_resource path="res://FPSLabel.gd" type="Script" id=2]
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.916684, 0.399613, 0, -0.399613, 0.916684, 4.08728, 7.82031, 14.8372 )
+
+[node name="FpsLabel" type="CanvasLayer" parent="."]
+script = ExtResource( 2 )

@@ -9,19 +9,20 @@ var behind setget set_behind
 
 var cross = preload("res://scene/Game/TicTacToe_MagicCube/Cross.tscn")
 var ring = preload("res://scene/Game/TicTacToe_MagicCube/Ring.tscn")
+onready var tween = $"Tween"
 
 func _ready():
 	pass
-	#add_panel(MagicCubeConstant.Towards.UP,MagicCubeConstant.Data.RING)
-	#add_panel(MagicCubeConstant.Towards.LEFT,MagicCubeConstant.Data.CROSS)
-	#add_panel(MagicCubeConstant.Towards.DOWN,MagicCubeConstant.Data.RING)
-	#add_panel(MagicCubeConstant.Towards.RIGHT,MagicCubeConstant.Data.CROSS)
-	#add_panel(MagicCubeConstant.Towards.FRONT,MagicCubeConstant.Data.RING)
-	#add_panel(MagicCubeConstant.Towards.BEHIND,MagicCubeConstant.Data.CROSS)
-	
-	#transform*=Transform(Basis(Vector3(0,0,1),TAU/16))
-	#transform.origin = transform.origin.rotated(Vector3(0,0,1),TAU/16)
-	#rotate(Vector3(0,0,1),PI/4)
+
+
+func init_signal(manage):
+	for node in get_children():
+		match node.name:
+			'FrontPanel','DownPanel','BehindPanel','LeftPanel','RightPanel','UpPanel':
+				pass
+			_:
+				node.connect("mouse_entered",manage,"box_panel_entered",[node.name])
+				node.connect("mouse_exited",manage,"box_panel_exited",[node.name])
 
 func add_panel(toward,data_type):
 	var panel
@@ -116,12 +117,15 @@ func turn_up_anit():
 	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
 	
 func turn_down_clockwise():
+	tween.interpolate_property(self, "transform", transform, transform*Transform(Basis(Vector3(0,-1,0),-TAU/4)), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(transform, "origin", transform.origin, transform.origin.rotated(Vector3(0,-1,0),-TAU/4), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	"""
 	transform*=Transform(Basis(Vector3(0,-1,0),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,1,0),-TAU/4)
-	
+	transform.origin = transform.origin.rotated(Vector3(0,-1,0),-TAU/4)
+	"""
 func turn_down_anit():
 	transform*=Transform(Basis(Vector3(0,-1,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
+	transform.origin = transform.origin.rotated(Vector3(0,-1,0),TAU/4)
 
 func turn_front_clockwise():
 	transform*=Transform(Basis(Vector3(0,0,1),-TAU/4))
@@ -139,4 +143,5 @@ func turn_behind_anit():
 	transform*=Transform(Basis(Vector3(0,0,-1),TAU/4))
 	transform.origin = transform.origin.rotated(Vector3(0,0,-1),TAU/4)
 	
+
 
