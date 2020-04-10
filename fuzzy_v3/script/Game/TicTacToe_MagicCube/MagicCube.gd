@@ -274,7 +274,7 @@ func _create_conrner():
 	centerbox = box.instance()
 	centerbox_data = data.up.cz.z
 	centerbox.get_node("UpPanel").name="%s_%s_%s"%[centerbox_data.type, centerbox_data.number,centerbox_data.index]
-	centerbox_data = data.left.cz.z
+	centerbox_data = data.left.cx.z
 	centerbox.get_node("LeftPanel").name="%s_%s_%s"%[centerbox_data.type, centerbox_data.number,centerbox_data.index]
 	centerbox_data = data.front.cx.z
 	centerbox.get_node("FrontPanel").name="%s_%s_%s"%[centerbox_data.type, centerbox_data.number,centerbox_data.index]
@@ -430,7 +430,9 @@ func generateAction():
 	var action = ""
 	match select.size():
 		3:
+			print(select)
 			action = get_action_three()
+			print(action)
 		8:
 			action = get_action_eight()
 		_:

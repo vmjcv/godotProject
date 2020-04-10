@@ -12,6 +12,7 @@ var ring = preload("res://scene/Game/TicTacToe_MagicCube/Ring.tscn")
 onready var tween = $"Tween"
 
 func _ready():
+
 	pass
 
 
@@ -92,71 +93,115 @@ func set_behind(panel):
 	add_child(behind)
 	behind.rotation_degrees = Vector3(270,0,0)
 	
-func turn_right_clockwise():
-	transform*=Transform(Basis(Vector3(1,0,0),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(1,0,0),-TAU/4)
-	
-func turn_right_anit():
-	transform*=Transform(Basis(Vector3(1,0,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(1,0,0),TAU/4)
-
-func turn_left_clockwise():
-	transform*=Transform(Basis(Vector3(-1,0,0),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(-1,0,0),-TAU/4)
-	
-func turn_left_anit():
-	transform*=Transform(Basis(Vector3(-1,0,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(-1,0,0),TAU/4)
-
-func turn_up_clockwise():
-	transform*=Transform(Basis(Vector3(0,1,0),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,1,0),-TAU/4)
-	
-func turn_up_anit():
-	transform*=Transform(Basis(Vector3(0,1,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
-
-var tween_turn_down_clockwise_rotation = 0
-func tween_turn_down_clockwise(rotation):
+var tween_turn_right_left_rotation = 0
+func tween_turn_right_left(rotation):
 	var needrotation = 0
-	if tween_turn_down_clockwise_rotation:
-		needrotation = rotation - tween_turn_down_clockwise_rotation
-		tween_turn_down_clockwise_rotation = rotation
+	if tween_turn_right_left_rotation != 0 :
+		needrotation = rotation - tween_turn_right_left_rotation
+		tween_turn_right_left_rotation = rotation
 	else:
 		needrotation = rotation
-		tween_turn_down_clockwise_rotation = rotation
+		tween_turn_right_left_rotation = rotation
 		
+	transform*=Transform(Basis(Vector3(1,0,0),needrotation))
+	transform.origin = transform.origin.rotated(Vector3(1,0,0),needrotation)	
+	
+func turn_right_clockwise():
+	tween_turn_right_left_rotation = 0
+	tween.interpolate_method(self, "tween_turn_right_left", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+		
+func turn_right_anit():
+	tween_turn_right_left_rotation = 0
+	tween.interpolate_method(self, "tween_turn_right_left", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+		
+func turn_left_clockwise():
+	tween_turn_right_left_rotation = 0
+	tween.interpolate_method(self, "tween_turn_right_left", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+		
+func turn_left_anit():
+	tween_turn_right_left_rotation = 0
+	tween.interpolate_method(self, "tween_turn_right_left", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+		
+var tween_turn_up_down_rotation = 0
+func tween_turn_up_down(rotation):
+	var needrotation = 0
+	if tween_turn_up_down_rotation != 0 :
+		needrotation = rotation - tween_turn_up_down_rotation
+		tween_turn_up_down_rotation = rotation
+	else:
+		needrotation = rotation
+		tween_turn_up_down_rotation = rotation
 		
 	transform*=Transform(Basis(Vector3(0,1,0),needrotation))
 	transform.origin = transform.origin.rotated(Vector3(0,1,0),needrotation)
 	
-func turn_down_clockwise():
-	tween.interpolate_method(self, "tween_turn_down_clockwise", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+func turn_up_clockwise():
+	tween_turn_up_down_rotation = 0
+	tween.interpolate_method(self, "tween_turn_up_down", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()
-	"""
-	transform*=Transform(Basis(Vector3(0,1,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,1,0),TAU/4)
-	"""
+		
+func turn_up_anit():
+	tween_turn_up_down_rotation = 0
+	tween.interpolate_method(self, "tween_turn_up_down", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)	
+	if not tween.is_active():
+		tween.start()
+		
+func turn_down_clockwise():
+	tween_turn_up_down_rotation = 0
+	tween.interpolate_method(self, "tween_turn_up_down", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+
 func turn_down_anit():
-	transform*=Transform(Basis(Vector3(0,-1,0),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,-1,0),TAU/4)
+	tween_turn_up_down_rotation = 0
+	tween.interpolate_method(self, "tween_turn_up_down", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+
+var tween_turn_front_behind_rotation = 0
+func tween_turn_front_behind(rotation):
+	var needrotation = 0
+	if tween_turn_front_behind_rotation != 0 :
+		needrotation = rotation - tween_turn_front_behind_rotation
+		tween_turn_front_behind_rotation = rotation
+	else:
+		needrotation = rotation
+		tween_turn_front_behind_rotation = rotation
+		
+	transform*=Transform(Basis(Vector3(0,0,1),needrotation))
+	transform.origin = transform.origin.rotated(Vector3(0,0,1),needrotation)
 
 func turn_front_clockwise():
-	transform*=Transform(Basis(Vector3(0,0,1),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,0,1),-TAU/4)
-	
+	tween_turn_front_behind_rotation = 0
+	tween.interpolate_method(self, "tween_turn_front_behind", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+			
 func turn_front_anit():
-	transform*=Transform(Basis(Vector3(0,0,1),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,0,1),TAU/4)
+	tween_turn_front_behind_rotation = 0
+	tween.interpolate_method(self, "tween_turn_front_behind", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
 	
 func turn_behind_clockwise():
-	transform*=Transform(Basis(Vector3(0,0,-1),-TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,0,-1),-TAU/4)
-	
+	tween_turn_front_behind_rotation = 0
+	tween.interpolate_method(self, "tween_turn_front_behind", 0, TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
+		
 func turn_behind_anit():
-	transform*=Transform(Basis(Vector3(0,0,-1),TAU/4))
-	transform.origin = transform.origin.rotated(Vector3(0,0,-1),TAU/4)
-	
+	tween_turn_front_behind_rotation = 0
+	tween.interpolate_method(self, "tween_turn_front_behind", 0, -TAU/4, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	if not tween.is_active():
+		tween.start()
 
 
