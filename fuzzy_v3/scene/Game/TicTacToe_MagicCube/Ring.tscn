@@ -1,9 +1,8 @@
 [gd_scene format=2]
 
-[node name="MeshInstance" type="MeshInstance"]
+[node name="Ring" type="MeshInstance"]
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="CSGTorus" type="CSGTorus" parent="CSGCombiner"]
 inner_radius = 0.5

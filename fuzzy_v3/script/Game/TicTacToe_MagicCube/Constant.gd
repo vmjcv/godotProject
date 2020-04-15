@@ -20,3 +20,8 @@ enum Data {
 	RING,
 }
 
+enum Player {
+	MINE,
+	OTHER,
+}
+

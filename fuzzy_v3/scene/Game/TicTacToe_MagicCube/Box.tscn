@@ -38,13 +38,13 @@ shape = SubResource( 3 )
 [node name="BehindPanel" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.95 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="BehindPanel"]
+[node name="BehindPanel" type="CSGCombiner" parent="BehindPanel"]
 
-[node name="CSGBox" type="CSGBox" parent="BehindPanel/FrontPanel"]
+[node name="CSGBox" type="CSGBox" parent="BehindPanel/BehindPanel"]
 operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="BehindPanel/FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="BehindPanel/BehindPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
@@ -52,18 +52,19 @@ height = 0.77
 depth = 1.7
 
 [node name="CollisionShape" type="CollisionShape" parent="BehindPanel"]
+transform = Transform( -1, 3.25841e-07, 0, -3.25841e-07, -1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="LeftPanel" type="Area" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, -1.62921e-07, 2.65431e-14, -1, 1, -1.62921e-07, -1.62921e-07, -0.95, 0, 0 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="LeftPanel"]
+[node name="LeftPanel" type="CSGCombiner" parent="LeftPanel"]
 
-[node name="CSGBox" type="CSGBox" parent="LeftPanel/FrontPanel"]
+[node name="CSGBox" type="CSGBox" parent="LeftPanel/LeftPanel"]
 operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="LeftPanel/FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="LeftPanel/LeftPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
@@ -76,13 +77,13 @@ shape = SubResource( 3 )
 [node name="RightPanel" type="Area" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, -1.62921e-07, 2.65431e-14, -1, 1, -1.62921e-07, -1.62921e-07, 0.95, 0, 0 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="RightPanel"]
+[node name="RightPanel" type="CSGCombiner" parent="RightPanel"]
 
-[node name="CSGBox" type="CSGBox" parent="RightPanel/FrontPanel"]
+[node name="CSGBox" type="CSGBox" parent="RightPanel/RightPanel"]
 operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="RightPanel/FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="RightPanel/RightPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
@@ -90,18 +91,19 @@ height = 0.77
 depth = 1.7
 
 [node name="CollisionShape" type="CollisionShape" parent="RightPanel"]
+transform = Transform( -1, 3.25841e-07, 0, -3.25841e-07, -1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="UpPanel" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="UpPanel"]
+[node name="UpPanel" type="CSGCombiner" parent="UpPanel"]
 
-[node name="CSGBox" type="CSGBox" parent="UpPanel/FrontPanel"]
+[node name="CSGBox" type="CSGBox" parent="UpPanel/UpPanel"]
 operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="UpPanel/FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="UpPanel/UpPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
@@ -114,13 +116,13 @@ shape = SubResource( 3 )
 [node name="DownPanel" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0 )
 
-[node name="FrontPanel" type="CSGCombiner" parent="DownPanel"]
+[node name="DownPanel" type="CSGCombiner" parent="DownPanel"]
 
-[node name="CSGBox" type="CSGBox" parent="DownPanel/FrontPanel"]
+[node name="CSGBox" type="CSGBox" parent="DownPanel/DownPanel"]
 operation = 2
 height = 0.5
 
-[node name="CSGBox2" type="CSGBox" parent="DownPanel/FrontPanel"]
+[node name="CSGBox2" type="CSGBox" parent="DownPanel/DownPanel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440576, -5.5486e-09 )
 operation = 2
 width = 1.7
@@ -128,6 +130,7 @@ height = 0.77
 depth = 1.7
 
 [node name="CollisionShape" type="CollisionShape" parent="DownPanel"]
+transform = Transform( -1, 3.25841e-07, 0, -3.25841e-07, -1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]

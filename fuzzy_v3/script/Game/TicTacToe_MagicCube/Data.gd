@@ -20,7 +20,10 @@ class MagicGrid:
 	func equal_string(string):
 		var args = string.split("_")
 		return int(args[0])==type and int(args[1])==number and int(args[2])==index
-
+	
+	func _to_string():
+		return String(type)+"_"+String(number)+"_"+String(index)
+	
 class Vector3Grid:
 	var x
 	var y
@@ -68,7 +71,7 @@ class MagicPanel:
 		return should_continue()
 
 	func _iter_get(arg):
-		return grid_table[current%3][floor(current/3)]
+		return grid_table[floor(current/3)][current%3]
 
 	func _init(init_grid_table):
 		grid_table = init_grid_table
@@ -89,7 +92,7 @@ class MagicPanel:
 	func get_cy():
 		return Vector3Grid.new(grid_table[0][1],grid_table[1][1],grid_table[2][1])
 
-	func set_cz(data:Vector3):
+	func set_cz(data):
 		grid_table[0][2]=data.x
 		grid_table[1][2]=data.y
 		grid_table[2][2]=data.z
@@ -172,8 +175,13 @@ class MagicPanel:
 			for j in range(3):
 				var grid = grid_table[i][j]
 				if grid.type==type and grid.number == number:
-					return [i,j]
+					return grid
 		return null
+
+	func get_grid_by_name(string):
+		var args = string.split("_")
+		return get_grid_by_type_number(int(args[0]),int(args[1]))
+
 
 	func get_center():
 		return grid_table[1][1]
@@ -187,12 +195,12 @@ class MagicPanel:
 		return false
 
 	func equal_panel_anit(array):
-		var begin_i
+		var begin_i=-1
 		for i in range(8):
 			if get_by_clock(i).equal_string(array[0]):
 				begin_i = i
 				break
-		if not begin_i:
+		if begin_i<0:
 			return false
 		var found = true
 		for i in range(8):
@@ -203,17 +211,17 @@ class MagicPanel:
 		return found
 
 	func equal_panel_clockwise(array):
-		var begin_i
+		var begin_i=-1
 		for i in range(8):
 			if get_by_clock(i).equal_string(array[7]):
 				begin_i = i
 				break
-		if not begin_i:
+		if begin_i<0:
 			return false
 		var found = true
 		for i in range(8):
-			var j = (begin_i-i)%8
-			if not get_by_clock(j).equal_string(array[i]):
+			var j = (begin_i+i)%8
+			if not get_by_clock(j).equal_string(array[(7-i)%8]):
 				found = false
 				break
 		return found
@@ -227,6 +235,9 @@ class MagicCube:
 	var right
 	var front
 	var behind
+	
+	var grid_map = Dictionary()
+	
 	func _init():
 		up = MagicPanel.new([
 			[MagicGrid.new(MagicCubeConstant.GridType.CORNER,0,0),MagicGrid.new(MagicCubeConstant.GridType.SIDE,0,0),MagicGrid.new(MagicCubeConstant.GridType.CORNER,1,0)],
@@ -268,7 +279,7 @@ class MagicCube:
 		up.cx=front.cz.zyx
 		front.cz=first_z
 
-		right.turn_anit()
+		right.turn_clockwise()
 
 	func turn_right_anit():
 		var first_z=down.cz
@@ -277,7 +288,7 @@ class MagicCube:
 		up.cx=behind.cz.zyx
 		behind.cz=first_z
 
-		right.turn_clockwise()
+		right.turn_anit()
 
 	func turn_left_clockwise():
 		var first_x=down.cx
@@ -286,7 +297,7 @@ class MagicCube:
 		up.cz=behind.cx.zyx
 		behind.cx=first_x
 
-		left.turn_anit()
+		left.turn_clockwise()
 
 	func turn_left_anit():
 		var first_x=down.cx
@@ -295,7 +306,7 @@ class MagicCube:
 		up.cz=front.cx.zyx
 		front.cx=first_x
 
-		left.turn_clockwise()
+		left.turn_anit()
 
 	func turn_up_clockwise():
 		var first_k=front.rk
@@ -303,7 +314,7 @@ class MagicCube:
 		right.cz=behind.ri
 		behind.ri=left.cx.zyx
 		left.cx=first_k
-		up.turn_anit()
+		up.turn_clockwise()
 
 	func turn_up_anit():
 		var first_k=front.rk
@@ -311,7 +322,7 @@ class MagicCube:
 		left.cx = behind.ri.zyx
 		behind.ri=right.cz
 		right.cz=first_k.zyx
-		up.turn_clockwise()
+		up.turn_anit()
 
 	func turn_down_clockwise():
 		var first_i=front.ri
@@ -319,7 +330,7 @@ class MagicCube:
 		left.cz=behind.rk.zyx
 		behind.rk=right.cx
 		right.cx=first_i.zyx
-		down.turn_anit()
+		down.turn_clockwise()
 
 	func turn_down_anit():
 		var first_i=front.ri
@@ -327,7 +338,7 @@ class MagicCube:
 		right.cx=behind.rk
 		behind.rk=left.cz.zyx
 		left.cz=first_i
-		down.turn_clockwise()
+		down.turn_anit()
 
 	func turn_front_clockwise():
 		var first_k=down.rk
@@ -335,7 +346,7 @@ class MagicCube:
 		right.rk=up.rk
 		up.rk=left.rk
 		left.rk=first_k
-		front.turn_anit()
+		front.turn_clockwise()
 
 	func turn_front_anit():
 		var first_k=down.rk
@@ -343,7 +354,7 @@ class MagicCube:
 		left.rk=up.rk
 		up.rk=right.rk
 		right.rk=first_k
-		front.turn_clockwise()
+		front.turn_anit()
 
 	func turn_behind_clockwise():
 		var first_i=down.ri
@@ -351,7 +362,7 @@ class MagicCube:
 		left.ri=up.ri
 		up.ri=right.ri
 		right.ri=first_i
-		behind.turn_anit()
+		behind.turn_clockwise()
 
 	func turn_behind_anit():
 		var first_i=down.ri
@@ -359,7 +370,7 @@ class MagicCube:
 		right.ri=up.ri
 		up.ri=left.ri
 		left.ri=first_i
-		behind.turn_clockwise()
+		behind.turn_anit()
 
 	func turn_transverse_clockwise():
 		# 沿着底部横向中间线做旋转
