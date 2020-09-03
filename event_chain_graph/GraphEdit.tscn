@@ -1,0 +1,60 @@
+[gd_scene format=2]
+
+[node name="GraphEdit" type="GraphEdit"]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 1019.0
+margin_bottom = 682.0
+scroll_offset = Vector2( -40, -40 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GraphNode" type="GraphNode" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 485.0
+margin_bottom = 394.0
+mouse_filter = 1
+title = "5463132"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="GraphNode"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 429.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="GraphNode2" type="GraphNode" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 485.0
+margin_bottom = 394.0
+mouse_filter = 1
+title = "5463132"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="GraphNode2"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 429.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )

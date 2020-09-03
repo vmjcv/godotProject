@@ -117,6 +117,7 @@ func _up_item_button(item):
 	pass
 	
 func area_entered(other_area,item):
+	print("11111111111111111")
 	now_area_entered_item = item
 	pass
 
@@ -125,6 +126,7 @@ func area_exited(other_area,item):
 		now_area_entered_item=null
 	pass
 func mouse_entered(item):
+	print("2222222222222")
 	now_mouse_entered_item = item
 	pass
 
