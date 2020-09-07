@@ -1,0 +1,5 @@
+extends Node
+
+enum edit_type {REFERENCE_LINE,INSTAN_FLOW_LINE,DELAY_FLOW_LINE,BRANCH}
+
+

@@ -105,7 +105,16 @@ _global_script_class_icons={
 [application]
 
 config/name="event_chain_graph"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LineConstant="*res://line/line_constant.gd"
+LineMgr="*res://line/line_mgr.gd"
+BranchMgr="*res://branch/branch_mgr.gd"
+BranchConstant="*res://branch/branch_constant.gd"
+EditConstant="*res://edit_constant.gd"
 
 [editor_plugins]
 

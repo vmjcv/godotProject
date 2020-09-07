@@ -2,7 +2,6 @@
 
 [ext_resource path="res://addons/event_chain/editor/src/editor/gui/add_node_panel.gd" type="Script" id=1]
 
-
 [sub_resource type="GDScript" id=1]
 script/source = "tool
 extends CheckBox

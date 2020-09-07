@@ -213,6 +213,19 @@
 			},
 			"name": "GraphNode8",
 			"type": "status"
+		},
+		{
+			"data": {},
+			"editor": {
+				"offset_x": 10,
+				"offset_y": 0,
+				"slots": {
+					"1": false,
+					"3": ""
+				}
+			},
+			"name": "GraphNode14",
+			"type": "debug_color_palette"
 		}
 	]
 }
