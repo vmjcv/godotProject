@@ -132,4 +132,5 @@ func draw(type,begin_pos,end_pos,begin_color,end_color,time,info):
 func change_end_pos(end_pos):
 	self.draw(type,begin_pos,end_pos,begin_color,end_color,time,info)
 	
-	
+func change_pos(begin_pos,end_pos):
+	self.draw(type,begin_pos,end_pos,begin_color,end_color,time,info)

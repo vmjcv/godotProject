@@ -3,8 +3,6 @@
 [ext_resource path="res://line/line.gd" type="Script" id=1]
 
 [node name="line" type="Line2D"]
-position = Vector2( 2.44287, -0.0525551 )
-scale = Vector2( 1.58828, 1 )
 width = 2.0
 default_color = Color( 0.34902, 0.301961, 0, 1 )
 texture_mode = 1

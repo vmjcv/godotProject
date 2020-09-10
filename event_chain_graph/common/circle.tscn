@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://common/circle.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+uniform vec4 color:hint_color;
+
+void fragment()
+{   
+	vec2 work_uv = UV-0.5;
+	if(length(work_uv)>0.5){
+		COLOR = vec4(0);
+	}else{
+		COLOR = texture(TEXTURE, UV);
+    	COLOR = vec4(color.rgb, COLOR.a);
+	}
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/color = Color( 0.921569, 0.129412, 0.129412, 1 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+[node name="circle" type="ColorRect"]
+material = SubResource( 5 )
+margin_right = 2.0
+margin_bottom = 2.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( -0.00180626, 0.0442438 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )

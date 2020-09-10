@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/event_chain/editor/src/common/editor_util.gd"
 }, {
-"base": "Reference",
+"base": "Control",
 "class": "EventChainGraphEditorView",
 "language": "GDScript",
 "path": "res://addons/event_chain/editor/src/editor/gui/editor_view.gd"
@@ -64,12 +64,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/event_chain/editor/src/core/template.gd"
 }, {
-"base": "Reference",
+"base": "GraphNode",
 "class": "EventChainNode",
 "language": "GDScript",
 "path": "res://addons/event_chain/editor/src/core/event_chain_node.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "EventChainNodeLibrary",
 "language": "GDScript",
 "path": "res://addons/event_chain/editor/src/core/node_library.gd"

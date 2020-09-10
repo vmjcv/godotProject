@@ -7,9 +7,9 @@ var branch_number = 0
 func _ready():
 	pass
 	
-func create_branch(begin_pos,end_pos,rect_color,add_to=null,branch_name=null,info=null):
+func create_branch(type,begin_pos,end_pos,rect_color,add_to=null,branch_name=null,info=null):
 	var branch = branch_tscn.instance()
-	branch.draw(begin_pos,end_pos,rect_color,info)
+	branch.draw(type,begin_pos,end_pos,rect_color,info)
 	if branch_name:
 		branch.name = branch_name
 		branch_dict[branch.name] = branch
@@ -35,6 +35,9 @@ func delete_branch(branch_name=null):
 				branch_number = branch_number-1
 				break
 
-func create_decision(begin_pos,end_pos,add_to):
-	return create_branch(begin_pos,end_pos,Color.white,add_to)
 
+func create_if_branch(begin_pos,end_pos,add_to):
+	return create_branch(BranchConstant.branch_type.IF,begin_pos,end_pos,Color.white,add_to)
+	
+func create_match_branch(begin_pos,end_pos,add_to):
+	return create_branch(BranchConstant.branch_type.MATCH,begin_pos,end_pos,Color.white,add_to)

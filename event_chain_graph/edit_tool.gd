@@ -5,7 +5,8 @@ export var edit_tool_selected_group : ButtonGroup
 onready var reference_line = $reference_line
 onready var instan_flow_line = $instan_flow_line
 onready var delay_flow_line = $delay_flow_line
-onready var branch = $branch
+onready var if_branch = $if
+onready var match_branch = $match
 
 
 func _ready():
@@ -20,5 +21,7 @@ func get_now_select_type():
 			return EditConstant.edit_type.INSTAN_FLOW_LINE
 		delay_flow_line:
 			return EditConstant.edit_type.DELAY_FLOW_LINE
-		branch:
-			return EditConstant.edit_type.BRANCH
+		if_branch:
+			return EditConstant.edit_type.IF_BRANCH
+		match_branch:
+			return EditConstant.edit_type.MATCH_BRANCH
