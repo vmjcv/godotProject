@@ -34,7 +34,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="shape" type="CollisionShape2D" parent="."]
+[node name="area2d" type="Area2D" parent="."]
+position = Vector2( -1.16415e-10, 3.72529e-09 )
+scale = Vector2( 1, 1 )
+
+[node name="shape" type="CollisionShape2D" parent="area2d"]
 position = Vector2( -0.00180626, 0.0442438 )
 scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
+[connection signal="mouse_entered" from="area2d" to="." method="_on_area2d_mouse_entered"]
+[connection signal="mouse_exited" from="area2d" to="." method="_on_area2d_mouse_exited"]
