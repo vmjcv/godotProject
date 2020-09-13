@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/event_chain/data_view/line/line.gd" type="Script" id=1]
+
+[node name="line" type="Line2D"]
+width = 2.0
+default_color = Color( 0.34902, 0.301961, 0, 1 )
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 20
+antialiased = true
+script = ExtResource( 1 )

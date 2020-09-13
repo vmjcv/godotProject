@@ -9,112 +9,85 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "BranchData",
+"class": "BoolBranchData",
+"language": "GDScript",
+"path": "res://addons/event_chain/data_structures/branch/bool.gd"
+}, {
+"base": "EventChainData",
+"class": "BranchData",
+"language": "GDScript",
+"path": "res://addons/event_chain/data_structures/branch/branch_data.gd"
+}, {
+"base": "LineData",
+"class": "DelayFlowLineData",
+"language": "GDScript",
+"path": "res://addons/event_chain/data_structures/line/delay_flow.gd"
+}, {
+"base": "Reference",
+"class": "EventChainData",
+"language": "GDScript",
+"path": "res://addons/event_chain/data_structures/common/event_chain_data.gd"
+}, {
 "base": "Node",
 "class": "EventChainGraph",
 "language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/event_chain_graph.gd"
-}, {
-"base": "Object",
-"class": "EventChainGraphCallback",
-"language": "GDScript",
-"path": "res://addons/event_chain/data_structures/callback.gd"
-}, {
-"base": "Reference",
-"class": "EventChainGraphDataType",
-"language": "GDScript",
-"path": "res://addons/event_chain/data_structures/data_types.gd"
-}, {
-"base": "Reference",
-"class": "EventChainGraphEditorUtil",
-"language": "GDScript",
-"path": "res://addons/event_chain/editor/src/common/editor_util.gd"
-}, {
-"base": "Control",
-"class": "EventChainGraphEditorView",
-"language": "GDScript",
-"path": "res://addons/event_chain/editor/src/editor/gui/editor_view.gd"
-}, {
-"base": "Object",
-"class": "EventChainGraphEvent",
-"language": "GDScript",
-"path": "res://addons/event_chain/data_structures/event.gd"
-}, {
-"base": "Node",
-"class": "EventChainGraphNodePool",
-"language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/node_pool.gd"
+"path": "res://addons/event_chain/event_chain_graph.gd"
 }, {
 "base": "Reference",
 "class": "EventChainGraphSettings",
 "language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/project_settings.gd"
+"path": "res://addons/event_chain/project_settings.gd"
 }, {
-"base": "Object",
-"class": "EventChainGraphSignal",
+"base": "LineData",
+"class": "InstanFlowLineData",
 "language": "GDScript",
-"path": "res://addons/event_chain/data_structures/signal.gd"
+"path": "res://addons/event_chain/data_structures/line/instan_flow.gd"
 }, {
-"base": "Object",
-"class": "EventChainGraphStatus",
+"base": "EventChainData",
+"class": "LineData",
 "language": "GDScript",
-"path": "res://addons/event_chain/data_structures/status.gd"
+"path": "res://addons/event_chain/data_structures/line/line_data.gd"
 }, {
-"base": "",
-"class": "EventChainGraphTemplate",
+"base": "BranchData",
+"class": "MatchBranchData",
 "language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/template.gd"
+"path": "res://addons/event_chain/data_structures/branch/match.gd"
 }, {
-"base": "GraphNode",
-"class": "EventChainNode",
+"base": "LineData",
+"class": "ReferenceLineData",
 "language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/event_chain_node.gd"
-}, {
-"base": "Node",
-"class": "EventChainNodeLibrary",
-"language": "GDScript",
-"path": "res://addons/event_chain/editor/src/core/node_library.gd"
-}, {
-"base": "Reference",
-"class": "JSONBeautifier",
-"language": "GDScript",
-"path": "res://addons/event_chain/thirdparty/json_beautifier/json_beautifier.gd"
-}, {
-"base": "Object",
-"class": "NodeUtils",
-"language": "GDScript",
-"path": "res://addons/event_chain/editor/src/common/node_utils.gd"
+"path": "res://addons/event_chain/data_structures/line/reference.gd"
 } ]
 _global_script_class_icons={
-"EventChainGraph": "res://addons/event_chain/editor/icons/icon_event_chain_graph.svg",
-"EventChainGraphCallback": "",
-"EventChainGraphDataType": "",
-"EventChainGraphEditorUtil": "",
-"EventChainGraphEditorView": "",
-"EventChainGraphEvent": "",
-"EventChainGraphNodePool": "",
+"BoolBranchData": "",
+"BranchData": "",
+"DelayFlowLineData": "",
+"EventChainData": "",
+"EventChainGraph": "",
 "EventChainGraphSettings": "",
-"EventChainGraphSignal": "",
-"EventChainGraphStatus": "",
-"EventChainGraphTemplate": "",
-"EventChainNode": "",
-"EventChainNodeLibrary": "",
-"JSONBeautifier": "",
-"NodeUtils": ""
+"InstanFlowLineData": "",
+"LineData": "",
+"MatchBranchData": "",
+"ReferenceLineData": ""
 }
 
 [application]
 
 config/name="event_chain_graph"
-run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-LineConstant="*res://line/line_constant.gd"
-LineMgr="*res://line/line_mgr.gd"
-BranchMgr="*res://branch/branch_mgr.gd"
-BranchConstant="*res://branch/branch_constant.gd"
-EditConstant="*res://edit_constant.gd"
+EditConstant="*res://addons/event_chain/editor/edit_constant.gd"
+BranchConstant="*res://addons/event_chain/data_view/branch/branch_constant.gd"
+LineConstant="*res://addons/event_chain/data_view/line/line_constant.gd"
+LineMgr="*res://addons/event_chain/data_view/line/line_mgr.gd"
+BranchMgr="*res://addons/event_chain/data_view/branch/branch_mgr.gd"
+
+[display]
+
+window/size/always_on_top=true
 
 [editor_plugins]
 
@@ -122,10 +95,7 @@ enabled=PoolStringArray( "event_chain" )
 
 [event_chain_graph]
 
-generation/enable_multithreading=true
-generation/delay_before_generation=75
-user_interface/inline_vector_fields=false
-user_interface/group_nodes_by_type=false
+use_mode/use_mode="editor"
 
 [rendering]
 

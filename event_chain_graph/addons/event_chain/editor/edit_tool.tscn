@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/event_chain/editor/res/instan_flow_line_icon.png" type="Texture" id=1]
+[ext_resource path="res://addons/event_chain/editor/res/reference_line_icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/event_chain/editor/res/delay_flow_line_icon.png" type="Texture" id=3]
+[ext_resource path="res://addons/event_chain/editor/res/if_icon.png" type="Texture" id=4]
+[ext_resource path="res://addons/event_chain/editor/res/edit_tool_selected.tres" type="StyleBox" id=5]
+[ext_resource path="res://addons/event_chain/editor/res/edit_tool_selected_group.tres" type="ButtonGroup" id=6]
+[ext_resource path="res://addons/event_chain/editor/edit_tool.gd" type="Script" id=7]
+[ext_resource path="res://addons/event_chain/editor/res/match_icon.png" type="Texture" id=8]
+
+
+[node name="edit_tool" type="HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 24.0
+mouse_filter = 0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+edit_tool_selected_group = ExtResource( 6 )
+
+[node name="VSeparator2" type="VSeparator" parent="."]
+margin_right = 4.0
+margin_bottom = 24.0
+
+[node name="reference_line" type="ToolButton" parent="."]
+margin_left = 8.0
+margin_right = 36.0
+margin_bottom = 24.0
+custom_styles/focus = ExtResource( 5 )
+toggle_mode = true
+group = ExtResource( 6 )
+icon = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instan_flow_line" type="ToolButton" parent="."]
+margin_left = 40.0
+margin_right = 68.0
+margin_bottom = 24.0
+custom_styles/focus = ExtResource( 5 )
+toggle_mode = true
+group = ExtResource( 6 )
+icon = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="delay_flow_line" type="ToolButton" parent="."]
+margin_left = 72.0
+margin_right = 100.0
+margin_bottom = 24.0
+custom_styles/focus = ExtResource( 5 )
+toggle_mode = true
+group = ExtResource( 6 )
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="."]
+margin_left = 104.0
+margin_right = 108.0
+margin_bottom = 24.0
+
+[node name="if" type="ToolButton" parent="."]
+margin_left = 112.0
+margin_right = 139.0
+margin_bottom = 24.0
+custom_styles/focus = ExtResource( 5 )
+toggle_mode = true
+group = ExtResource( 6 )
+icon = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="match" type="ToolButton" parent="."]
+margin_left = 143.0
+margin_right = 171.0
+margin_bottom = 24.0
+custom_styles/focus = ExtResource( 5 )
+toggle_mode = true
+group = ExtResource( 6 )
+icon = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
