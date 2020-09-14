@@ -2,7 +2,6 @@
 
 [ext_resource path="res://addons/event_chain/data_view/branch/branch.gd" type="Script" id=1]
 
-
 [node name="branch" type="Polygon2D"]
 antialiased = true
 script = ExtResource( 1 )

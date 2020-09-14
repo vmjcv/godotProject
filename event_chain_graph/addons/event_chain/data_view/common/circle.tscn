@@ -2,8 +2,7 @@
 
 [ext_resource path="res://addons/event_chain/data_view/common/circle.gd" type="Script" id=1]
 
-
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 uniform vec4 color:hint_color;
@@ -19,16 +18,16 @@ void fragment()
 }"
 custom_defines = ""
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/color = Color( 0.00784314, 0, 1, 1 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0, 0, 1, 1 )
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="circle" type="ColorRect"]
-material = SubResource( 5 )
+material = SubResource( 2 )
 mouse_filter = 2
+color = Color( 0, 0, 1, 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,6 +39,6 @@ position = Vector2( -1.16415e-10, 3.72529e-09 )
 [node name="shape" type="CollisionShape2D" parent="area2d"]
 modulate = Color( 0.854902, 0, 0, 1 )
 position = Vector2( 50, 50 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 [connection signal="mouse_entered" from="area2d" to="." method="_on_area2d_mouse_entered"]
 [connection signal="mouse_exited" from="area2d" to="." method="_on_area2d_mouse_exited"]

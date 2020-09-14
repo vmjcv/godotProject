@@ -48,56 +48,57 @@ func create_shape():
 	match edit_tool.get_now_select_type():
 		EditConstant.edit_type.IF_BRANCH:
 			if cur_shape:
-				cur_shape.change_end_pos(end_pos)
+				cur_shape.change_pos(begin_pos,end_pos)
 			else:
 				cur_shape = BranchMgr.create_if_branch(begin_pos,end_pos,$CLAYER)
 		EditConstant.edit_type.MATCH_BRANCH:
 			if cur_shape:
-				cur_shape.change_end_pos(end_pos)
+				cur_shape.change_pos(begin_pos,end_pos)
 			else:
 				cur_shape = BranchMgr.create_match_branch(begin_pos,end_pos,$CLAYER)
 		EditConstant.edit_type.DELAY_FLOW_LINE:
 			if cur_shape:
-				cur_shape.change_end_pos(end_pos)
+				cur_shape.change_pos(begin_pos,end_pos)
 			else:
 				cur_shape = LineMgr.create_delay_flow_line(begin_pos,end_pos,$CLAYER,cur_time,cur_info)
 			
 		EditConstant.edit_type.INSTAN_FLOW_LINE:
 			if cur_shape:
-				cur_shape.change_end_pos(end_pos)
+				cur_shape.change_pos(begin_pos,end_pos)
 			else:
 				cur_shape = LineMgr.create_instan_flow_line(begin_pos,end_pos,$CLAYER,cur_info)
 			
 		EditConstant.edit_type.REFERENCE_LINE:
 			if cur_shape:
-				cur_shape.change_end_pos(end_pos)
+				cur_shape.change_pos(begin_pos,end_pos)
 			else:
 				cur_shape = LineMgr.create_reference_line(begin_pos,end_pos,$CLAYER)
 	create_shape_edit_signal(cur_shape)
 	
 	
 func create_shape_edit_signal(cur_shape):
-	if cur_shape:
-		cur_shape.connect("mouse_entered",self,"mouse_entered")
-		cur_shape.connect("mouse_exited",self,"mouse_exited")
+	if cur_shape and cur_shape.has_signal("mouse_entered") and cur_shape.has_signal("mouse_exited"):
+		if not cur_shape.is_connected("mouse_entered",self,"mouse_entered"):
+			cur_shape.connect("mouse_entered",self,"mouse_entered")
+		if not cur_shape.is_connected("mouse_exited",self,"mouse_exited"):
+			cur_shape.connect("mouse_exited",self,"mouse_exited")
 		
 func mouse_entered(shape):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		end_shape = shape
-		print(end_shape)
 	
 func mouse_exited(shape):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if not begin_shape:
 			begin_shape = shape
-			print(begin_shape)
 	
 
 func connect_shape():
 	if begin_shape and end_shape:
 		var first_pos = begin_shape.get_intersects_pos((begin_shape.begin_pos+begin_shape.end_pos)/2,(end_shape.begin_pos+end_shape.end_pos)/2)
 		var second_pos = end_shape.get_intersects_pos((begin_shape.begin_pos+begin_shape.end_pos)/2,(end_shape.begin_pos+end_shape.end_pos)/2)
-		cur_shape.change_pos(first_pos,second_pos)
+		if first_pos and second_pos:
+			cur_shape.change_pos(first_pos,second_pos)
 		
 		
 func clear_mouse_shape():

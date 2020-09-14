@@ -12,6 +12,9 @@ signal mouse_entered
 signal mouse_exited
 
 
+var left_circle
+var right_circle
+
 var circle_tscn = preload("res://addons/event_chain/data_view/common/circle.tscn")
 
 func _ready():
@@ -27,13 +30,28 @@ func clear_label():
 	if info_label:
 		info_label.queue_free()
 
+func clear_circle():
+	if left_circle:
+		left_circle.queue_free()
+	if right_circle:
+		right_circle.queue_free()	
+
 func draw(type,begin_pos,end_pos,rect_color,info):
+	var min_x = min(begin_pos.x,end_pos.x)
+	var min_y = min(begin_pos.y,end_pos.y)
+	var max_x = max(begin_pos.x,end_pos.x)
+	var max_y = max(begin_pos.y,end_pos.y)
+	
+	begin_pos = Vector2(min_x,min_y)
+	end_pos = Vector2(max_x,max_y)
+	
 	self.type = type
 	self.begin_pos = begin_pos
 	self.end_pos = end_pos
 	self.rect_color = rect_color
 	self.info = info
 	clear_label()
+	clear_circle()
 	polygon.resize(0)
 	polygon = PoolVector2Array([
 	Vector2(((end_pos-begin_pos)/2).x+begin_pos.x,begin_pos.y),
@@ -60,11 +78,13 @@ func draw(type,begin_pos,end_pos,rect_color,info):
 		add_child(info_label)
 		info_label.modulate= Color.darkgray
 		info_label.rect_position = (begin_pos+end_pos)/2-info_label.rect_size/2
+	
 
+	
 	match type:
 		BranchConstant.branch_type.IF:
-			create_circle(Vector2(begin_pos.x,((end_pos-begin_pos)/2).y+begin_pos.y))
-			create_circle(Vector2(end_pos.x,((end_pos-begin_pos)/2).y+begin_pos.y))
+			left_circle = create_circle(Vector2(begin_pos.x,((end_pos-begin_pos)/2).y+begin_pos.y))
+			right_circle = create_circle(Vector2(end_pos.x,((end_pos-begin_pos)/2).y+begin_pos.y))
 			pass
 		BranchConstant.branch_type.MATCH:
 			pass
@@ -74,10 +94,8 @@ func create_circle(pos):
 	add_child(circle)
 	circle.draw(10)
 	circle.set_position(pos)
+	return circle
 
-
-func change_end_pos(end_pos):
-	self.draw(type,begin_pos,end_pos,rect_color,info)
 
 func change_pos(begin_pos,end_pos):
 	self.draw(type,begin_pos,end_pos,rect_color,info)

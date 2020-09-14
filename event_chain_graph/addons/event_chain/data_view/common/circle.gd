@@ -10,11 +10,10 @@ var exited_color = Color.blue
 var entered_color = Color.red
 
 
-func _ready():
+func _init():
 	color = exited_color
 	material = material.duplicate()
 	material.set_shader_param("color",color)
-
 	pass
 
 func draw(radius):
@@ -36,8 +35,10 @@ func _on_area2d_mouse_entered():
 	color = entered_color
 	material.set_shader_param("color",color)
 	emit_signal("shape_mouse_entered",self)
+	print("111111111111111111")
 
 func _on_area2d_mouse_exited():
 	color = exited_color
 	material.set_shader_param("color",color)
 	emit_signal("shape_mouse_exited",self)
+	print("2222222222222222")
