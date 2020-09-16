@@ -97,6 +97,10 @@ enabled=PoolStringArray( "event_chain" )
 
 use_mode/use_mode="editor"
 
+[layer_names]
+
+2d_physics/layer_20="EventChainGraphUI"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

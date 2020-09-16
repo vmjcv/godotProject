@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/event_chain/editor/tool_example.gd" type="Script" id=1]
+[ext_resource path="res://addons/event_chain/editor/res/pan.svg" type="Texture" id=2]
+[ext_resource path="res://addons/event_chain/editor/res/edit_tool_selected_group.tres" type="ButtonGroup" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="example" type="CheckButton"]
+margin_right = 28.0
+margin_bottom = 24.0
+custom_icons/off = ExtResource( 2 )
+custom_icons/on_disabled = ExtResource( 2 )
+custom_icons/on = ExtResource( 2 )
+custom_icons/off_disabled = ExtResource( 2 )
+custom_styles/focus = SubResource( 1 )
+group = ExtResource( 3 )
+align = 1
+expand_icon = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="draw" from="." to="." method="_on_pan_draw"]

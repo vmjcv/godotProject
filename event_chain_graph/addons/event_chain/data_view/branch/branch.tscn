@@ -7,7 +7,9 @@ antialiased = true
 script = ExtResource( 1 )
 
 [node name="area2d" type="Area2D" parent="."]
+collision_layer = 524288
 
 [node name="collision" type="CollisionPolygon2D" parent="area2d"]
+[connection signal="input_event" from="area2d" to="." method="_on_area2d_input_event"]
 [connection signal="mouse_entered" from="area2d" to="." method="_on_area2d_mouse_entered"]
 [connection signal="mouse_exited" from="area2d" to="." method="_on_area2d_mouse_exited"]

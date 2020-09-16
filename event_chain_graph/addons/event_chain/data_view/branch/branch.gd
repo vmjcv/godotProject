@@ -124,3 +124,8 @@ func get_intersects_pos(begin_pos,end_pos):
 			break
 	first_pos = intersects
 	return first_pos
+
+
+func _on_area2d_input_event(viewport, event, shape_idx):
+	print(viewport, event, shape_idx)
+	pass # Replace with function body.

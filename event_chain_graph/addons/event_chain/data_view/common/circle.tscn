@@ -35,6 +35,7 @@ __meta__ = {
 
 [node name="area2d" type="Area2D" parent="."]
 position = Vector2( -1.16415e-10, 3.72529e-09 )
+collision_layer = 524288
 
 [node name="shape" type="CollisionShape2D" parent="area2d"]
 modulate = Color( 0.854902, 0, 0, 1 )

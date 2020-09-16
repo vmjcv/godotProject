@@ -92,7 +92,3 @@ func _on_scene_changed(_param) -> void:
 	_graph_editor_view.clear_edit()
 	_on_selection_changed()
 
-
-
-
-

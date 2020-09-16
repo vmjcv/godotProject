@@ -35,10 +35,8 @@ func _on_area2d_mouse_entered():
 	color = entered_color
 	material.set_shader_param("color",color)
 	emit_signal("shape_mouse_entered",self)
-	print("111111111111111111")
 
 func _on_area2d_mouse_exited():
 	color = exited_color
 	material.set_shader_param("color",color)
 	emit_signal("shape_mouse_exited",self)
-	print("2222222222222222")
