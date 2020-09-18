@@ -17,3 +17,4 @@ func _on_pan_draw():
 	var draw_mode = get_draw_mode()
 	modulate = draw_color[draw_mode]
 	
+	Vector2(20,30).normalized()	

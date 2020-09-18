@@ -15,9 +15,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -0.296967
-margin_top = -0.593933
+margin_top = -2.17953
 margin_right = -0.296967
-margin_bottom = -0.593933
+margin_bottom = -2.17957
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,8 +70,9 @@ custom_styles/focus = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="TabContainer" type="TabContainer" parent="."]
+margin_top = -1.58561
 margin_right = 236.0
-margin_bottom = 509.0
+margin_bottom = 507.414
 theme = SubResource( 2 )
 tab_align = 0
 drag_to_rearrange_enabled = true
@@ -91,6 +92,10 @@ margin_bottom = -4.0
 [node name="Todo" type="ScrollContainer" parent="TabContainer/Todo"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.42204
+margin_top = -4.26616
+margin_right = 1.42204
+margin_bottom = -4.26617
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -102,7 +107,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
