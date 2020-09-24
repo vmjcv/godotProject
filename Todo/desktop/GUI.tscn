@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://common/GUI.gd" type="Script" id=1]
 [ext_resource path="res://common/base_button.gd" type="Script" id=2]
 [ext_resource path="res://res/解锁.svg" type="Texture" id=3]
 [ext_resource path="res://res/锁.svg" type="Texture" id=4]
 [ext_resource path="res://res/重新播放.svg" type="Texture" id=5]
+[ext_resource path="res://desktop/LineEdit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://res/设置.svg" type="Texture" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -70,8 +71,9 @@ custom_styles/focus = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 0.420441
 margin_top = -1.58561
-margin_right = 236.0
+margin_right = 236.42
 margin_bottom = 507.414
 theme = SubResource( 2 )
 tab_align = 0
@@ -92,15 +94,27 @@ margin_bottom = -4.0
 [node name="Todo" type="ScrollContainer" parent="TabContainer/Todo"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.42204
-margin_top = -4.26616
-margin_right = 1.42204
-margin_bottom = -4.26617
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Todo/Todo"]
+margin_right = 228.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+
+[node name="Control" parent="TabContainer/Todo/Todo/VBoxContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 227.0
+margin_bottom = 36.0
+
+[node name="Control2" parent="TabContainer/Todo/Todo/VBoxContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 40.0
+margin_right = 227.0
+margin_bottom = 76.0
 
 [node name="Done" type="Panel" parent="TabContainer"]
 visible = false
