@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 217.0
+margin_bottom = 114.0
+bbcode_enabled = true
+bbcode_text = "	[url=<https://www.baidu.com/>]test[/url]"
+text = "	test"
+__meta__ = {
+"_edit_use_anchors_": false
+}

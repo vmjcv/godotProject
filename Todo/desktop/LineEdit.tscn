@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://res/Xiaolai-SC.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://desktop/LineEdit.gd" type="Script" id=2]
 [ext_resource path="res://res/收起.svg" type="Texture" id=3]
 [ext_resource path="res://res/已完成.svg" type="Texture" id=4]
 [ext_resource path="res://res/关闭.svg" type="Texture" id=5]
+[ext_resource path="res://desktop/task.gd" type="Script" id=6]
+[ext_resource path="res://desktop/RichTextLabel.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -17,6 +19,7 @@ margin_bottom = -764.0
 rect_min_size = Vector2( 210, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,14 +47,14 @@ line_min_y = 22.0
 [node name="HBoxContainer" type="HBoxContainer" parent="text_line"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -94.0
+margin_left = -88.0
 margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="top" type="ToolButton" parent="text_line/HBoxContainer"]
-margin_right = 28.0
+margin_right = 26.0
 margin_bottom = 22.0
 mouse_filter = 1
 size_flags_horizontal = 7
@@ -63,8 +66,8 @@ __meta__ = {
 }
 
 [node name="finish" type="ToolButton" parent="text_line/HBoxContainer"]
-margin_left = 32.0
-margin_right = 61.0
+margin_left = 30.0
+margin_right = 57.0
 margin_bottom = 22.0
 mouse_filter = 1
 size_flags_horizontal = 7
@@ -76,8 +79,8 @@ __meta__ = {
 }
 
 [node name="close" type="ToolButton" parent="text_line/HBoxContainer"]
-margin_left = 65.0
-margin_right = 94.0
+margin_left = 61.0
+margin_right = 88.0
 margin_bottom = 22.0
 mouse_filter = 1
 size_flags_horizontal = 7
@@ -87,6 +90,11 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel" parent="." instance=ExtResource( 7 )]
 [connection signal="mouse_entered" from="text_line" to="text_line" method="_on_text_line_mouse_entered"]
 [connection signal="mouse_exited" from="text_line" to="text_line" method="_on_text_line_mouse_exited"]
 [connection signal="text_changed" from="text_line" to="text_line" method="_on_text_changed"]
+[connection signal="pressed" from="text_line/HBoxContainer/top" to="." method="_on_top_pressed"]
+[connection signal="pressed" from="text_line/HBoxContainer/finish" to="." method="_on_finish_pressed"]
+[connection signal="pressed" from="text_line/HBoxContainer/close" to="." method="_on_close_pressed"]

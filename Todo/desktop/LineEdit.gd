@@ -5,6 +5,7 @@ export(float) var line_min_y = 28
 onready var top = $"HBoxContainer/top"
 onready var finish = $"HBoxContainer/finish"
 onready var close = $"HBoxContainer/close"
+var task
 
 func _ready():
 	change_y()
@@ -16,12 +17,10 @@ func _on_text_changed():
 	
 func _on_text_line_mouse_entered():
 	show_tool_button()
-	print("111111111111")
 
 
 func _on_text_line_mouse_exited():
 	hide_tool_button()
-	print("22222222222")
 
 
 func show_tool_button():
@@ -38,4 +37,4 @@ func hide_tool_button():
 func change_y():
 	var text_y = get_total_visible_rows()*line_min_y
 	rect_min_size.y =  text_y
-	get_parent().rect_min_size.y = text_y
+
