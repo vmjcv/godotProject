@@ -46,10 +46,10 @@ func markdown_to_bbcode(s):
 	s = re.sub(r"^    (.*)$", "~[code]\\1[/code]", s)
 	s = re.sub(r"(?m)^(\S.*)\n=+\s*$", funcref(translate("~[size=200][b]%s[/b][/size]"),"inline"), s)
 	s = re.sub(r"(?m)^(\S.*)\n-+\s*$", funcref(translate("~[size=100][b]%s[/b][/size]"),"inline"), s)
-	s = re.sub(r"(?m)^#\s+(.*?)\s*#*$", funcref(translate("~[size=200][b]%s[/b][/size]"),"inline"), s)
-	s = re.sub(r"(?m)^##\s+(.*?)\s*#*$", funcref(translate("~[size=100][b]%s[/b][/size]"),"inline"), s)
-	s = re.sub(r"(?m)^###\s+(.*?)\s*#*$", funcref(translate("~[b]%s[/b]"),"inline"), s)
-	s = re.sub(r"(?m)^> (.*)$", funcref(translate("~[quote]%s[/quote]"),"inline"), s)
+	s = re.sub(r"(?m)^#\s+(.*?)\s*#*$", funcref(translate("~[size=200][b]%s[/b][/size]"),"inline"), s) # 一级标题
+	s = re.sub(r"(?m)^##\s+(.*?)\s*#*$", funcref(translate("~[size=100][b]%s[/b][/size]"),"inline"), s) # 二级标题
+	s = re.sub(r"(?m)^###\s+(.*?)\s*#*$", funcref(translate("~[b]%s[/b]"),"inline"), s) # 三级标题
+	s = re.sub(r"(?m)^> (.*)$", funcref(translate("~[quote]%s[/quote]"),"inline"), s) 
 	s = re.sub(r"(?m)^[-+*]\s+(.*)$", funcref(translate("~[list]\n[*]%s\n[/list]"),"inline"), s)
 	s = re.sub(r"(?m)^\d+\.\s+(.*)$", funcref(translate("~[list=1]\n[*]%s\n[/list]"),"inline"), s)
 	s = re.sub(r"(?m)^((?!~).*)$", funcref(translate(),"inline"), s)
@@ -63,3 +63,16 @@ func markdown_to_bbcode(s):
 func markdown_to_bbcode(s):
 	self.links = {}
 	self.codes = []
+	
+func translate_headline(s):
+	var regex = RegEx.new()
+	var compile_str = ""
+	var font_str = ""
+	for i in range(1,6):
+		compile_str = "^" + "#".repeat(i) + "\\s+(.*?)$"
+		regex.clear()
+		regex.compile(compile_str)
+		font_str = "[font=res/" + str(32 - (i)*4) + "px.tres]$1[/font]"
+		s = regex.sub(s,font_str,true)
+		print(s)
+	return s
