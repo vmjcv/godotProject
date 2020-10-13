@@ -65,91 +65,95 @@ func markdown_to_bbcode(s):
 func translate_headline(s):
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 	for i in range(1,6):
 		compile_str = "^" + "#".repeat(i) + "\\s+(.*?)$"
 		regex.clear()
 		regex.compile(compile_str)
-		font_str = "[font=res/" + str(32 - (i)*4) + "px.tres]$1[/font]"
-		s = regex.sub(s,font_str,true)
+		replace_str = "[font=res/" + str(32 - (i)*4) + "px.tres]$1[/font]"
+		s = regex.sub(s,replace_str,true)
 		print(s)
 	return s
 	
 func translate_bold():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 
-	compile_str = "\*\*(.*?)\*\*"
+	compile_str = "\\*\\*(.*?)\\*\\*"
 	regex.clear()
 	regex.compile(compile_str)
-	font_str = "[b]$1[/b]"
-	s = regex.sub(s,font_str,true)
+	replace_str = "[b]$1[/b]"
+	s = regex.sub(s,replace_str,true)
 	return s
 
 func translate_italic():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 
-	compile_str = "\*(.*?)\*"
+	compile_str = "\\*(.*?)\\*"
 	regex.clear()
 	regex.compile(compile_str)
-	font_str = "[i]$1[/i]"
-	s = regex.sub(s,font_str,true)
+	replace_str = "[i]$1[/i]"
+	s = regex.sub(s,replace_str,true)
 	return s
 
 func translate_italic_bold():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 
-	compile_str = "\*\*\*(.*?)\*\*\*"
+	compile_str = "\\*\\*\\*(.*?)\\*\\*\\*"
 	regex.clear()
 	regex.compile(compile_str)
-	font_str = "[i][b]$1[/b][/i]"
-	s = regex.sub(s,font_str,true)
+	replace_str = "[i][b]$1[/b][/i]"
+	s = regex.sub(s,replace_str,true)
 	return s
 
 func translate_delete():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 
 	compile_str = "~~(.*?)~~"
 	regex.clear()
 	regex.compile(compile_str)
-	font_str = "[s]$1[/s]"
-	s = regex.sub(s,font_str,true)
+	replace_str = "[s]$1[/s]"
+	s = regex.sub(s,replace_str,true)
 	return s
 
 func translate_quote():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
+	var replace_str = ""
 	for i in range(1,6):
 		compile_str = "^" + ">".repeat(i) + "(.*?)$"
 		regex.clear()
 		regex.compile(compile_str)
-		font_str = "[color=gray][indent]$1[/indent][/color]"
+		replace_str = "[color=gray][indent]$1[/indent][/color]"
 		
-		s = regex.sub(s,font_str,true)
-		print(s)
+		s = regex.sub(s,replace_str,true)
 	return s
 
-func translate_quote():
+func translate_dividing_line():
 	var regex = RegEx.new()
 	var compile_str = ""
-	var font_str = ""
-	compile_str = "^" + ">".repeat(i) + "(.*?)$"
+	var replace_str = ""
+	compile_str = "-{3,}|\\*{3,}\\s*$"
 	regex.clear()
 	regex.compile(compile_str)
-	[color=<code/name>]{text}[/color]
-	font_str = "[color=gray][indent]$1[/indent][/color]"
-	
-	s = regex.sub(s,font_str,true)
-	print(s)
+	replace_str = "[center][fill]-[/fill][/center]"
+	s = regex.sub(s,replace_str,true)
 	return s
 
-Dividing line
-fill
+func translate_image():
+	var regex = RegEx.new()
+	var compile_str = ""
+	var replace_str = ""
+	compile_str = "!\\[(?<alt>.*)\\]\\((?<url>.*)\\s+(''(?<title>.*)''){0,1}\\)"
+	regex.clear()
+	regex.compile(compile_str)
+	replace_str = "[center][fill]-[/fill][/center]"
+	s = regex.sub(s,replace_str,true)
+	return s
